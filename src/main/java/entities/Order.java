@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -24,11 +25,11 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "orders")
+    @ManyToOne
     private User user;
 
-    @ManyToOne
-    private Orderline ol;
+    @OneToMany
+    private List<Orderline> ol;
     private Date date;
 
     public User getUser() {
@@ -39,11 +40,11 @@ public class Order implements Serializable {
         this.user = user;
     }
 
-    public Orderline getOl() {
+    public List<Orderline> getOl() {
         return ol;
     }
 
-    public void setOl(Orderline ol) {
+    public void setOl(List<Orderline> ol) {
         this.ol = ol;
     }
 
