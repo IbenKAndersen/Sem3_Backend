@@ -3,6 +3,7 @@
   <!-- DO NOT RENAME THE PERSISTENCE UNIT -->
   <persistence-unit name="pu" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>entities.Order</class>
     <class>entities.RenameMe</class>
     <class>entities.Role</class>
     <class>entities.User</class>
