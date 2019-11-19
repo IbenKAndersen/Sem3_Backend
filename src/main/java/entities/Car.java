@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import entities.Location;
+import java.util.List;
 
 /**
  *
@@ -51,7 +52,7 @@ public class Car implements Serializable {
     @ManyToOne
     private Location location;
     @OneToMany
-    private Equipment equipment;
+    private List<Equipment> equipment;
     //TO-DO: create classes and relationships
     
     
