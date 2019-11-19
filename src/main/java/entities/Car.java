@@ -45,7 +45,7 @@ public class Car implements Serializable {
     @NotNull
     @Column(name = "car_details", length = 255)
     private String carDetails;
-    @OneToOne 
+    @OneToOne
     private Orderline orderlines;
     @OneToOne
     private Insurance insurance;
@@ -53,9 +53,6 @@ public class Car implements Serializable {
     private Location location;
     @OneToMany
     private List<Equipment> equipment;
-    //TO-DO: create classes and relationships
-    
-    
 
     public int getCarId() {
         return carId;
