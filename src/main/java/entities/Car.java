@@ -44,7 +44,7 @@ public class Car implements Serializable {
     @Column(name = "car_details", length = 255)
     private String carDetails;
     @OneToOne 
-    private Orderline orderlines;
+    private OrderLine orderlines;
     @OneToOne
     private Insurance insurance;
     @ManyToOne

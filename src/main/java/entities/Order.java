@@ -14,6 +14,15 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne
+    private User user;
+
+    @OneToMany
+    private List<OrderLine> ol;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date d;
+
     public Order() {
     }
 
@@ -24,14 +33,7 @@ public class Order implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-
-    @ManyToOne
-    private User user;
-
-    @OneToMany
-    private List<Orderline> ol;
-    private Date date;
-
+    
     public User getUser() {
         return user;
     }
@@ -40,19 +42,19 @@ public class Order implements Serializable {
         this.user = user;
     }
 
-    public List<Orderline> getOl() {
+    public List<OrderLine> getOl() {
         return ol;
     }
 
-    public void setOl(List<Orderline> ol) {
+    public void setOl(List<OrderLine> ol) {
         this.ol = ol;
     }
 
     public Date getDate() {
-        return date;
+        return d;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(Date d) {
+        this.d = d;
     }
 }
