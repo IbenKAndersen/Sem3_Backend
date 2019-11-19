@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dat.sem3.security</groupId>
-    <artifactId>CA3-Backend-2.0</artifactId>
+    <artifactId>Sem3_Backend</artifactId>
     <version>1</version>
     <packaging>war</packaging>
 
-    <name>CA3-Backend-2.0</name>
+    <name>Sem3_Backend</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
