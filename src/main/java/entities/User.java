@@ -48,8 +48,6 @@ public class User implements Serializable {
   }
 
   public User() {}
-
-  //TODO Change when password is hashed
    public boolean verifyPassword(String pw){
         if (BCrypt.checkpw(pw, userPass)) {
 	System.out.println("It matches");
