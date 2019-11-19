@@ -9,16 +9,13 @@ import javax.persistence.OneToOne;
 public class Orderline implements Serializable {
     @Basic
     private int lineNumber;
-    @OneToOne(cascade={CascadeType.PERSIST})
-    private Equipment equipment;
-    @Basic
-    private double cost = 0;
+    @OneToOne
+    private Car car;
 
-    public Orderline(Equipment equipment, double cost) {
-        this.equipment = equipment;
-        this.cost = cost;
+    public Orderline(Car car) {
+        this.car = car;
     }
-
+    
     public Orderline() {
     }
 
@@ -28,21 +25,5 @@ public class Orderline implements Serializable {
 
     public void setLineNumber(int lineNumber) {
         this.lineNumber = lineNumber;
-    }
-
-    public Equipment getProduct() {
-        return equipment;
-    }
-
-    public void setProduct(Equipment product) {
-        this.equipment = product;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
     }
 }
