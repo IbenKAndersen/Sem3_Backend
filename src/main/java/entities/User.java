@@ -8,6 +8,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ * 
+ * @author Kodebanditterne
+ */
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -29,7 +33,8 @@ public class User implements Serializable {
     @ManyToMany
     private List<Role> roleList = new ArrayList();
     
-    @OneToMany(mappedBy = "user")
+    
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Booking> bookings;
 
     public List<String> getRolesAsStrings() {
@@ -93,6 +98,10 @@ public class User implements Serializable {
 
     public List<Booking> getBookings() {
         return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
     
 }

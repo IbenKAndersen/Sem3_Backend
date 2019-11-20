@@ -17,8 +17,8 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @ManyToOne
-    @JoinColumn(name = "User")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_NAME")
     private User user;
     
     @Temporal(javax.persistence.TemporalType.DATE)

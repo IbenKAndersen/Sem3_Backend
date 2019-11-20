@@ -3,6 +3,8 @@ package utils;
 import entities.Booking;
 import entities.User;
 import entities.Role;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -40,15 +42,24 @@ public class SetupTestUsers {
         
         //Create Booking Entity
         Booking booking1 = new Booking();
+        List<Booking> list = new ArrayList();
+        list.add(booking1);
+        user1.setBookings(list);
         booking1.setUser(user1);
-        em.persist(booking1);
         
+        em.persist(booking1);
         em.getTransaction().commit();
         
         
-        Booking found = (Booking) em.find(Booking.class, 1);
+        Booking foundBooking = (Booking) em.find(Booking.class, 1);
+        User foundUser = (User) em.find(User.class, "Benni");
         System.out.println("------------------------------");
-        System.out.println(found.getUser().getUserName());
+        for (Booking b : foundBooking.getUser().getBookings()) {
+            System.out.println(b.getId());
+        }
+        for (Booking b : foundUser.getBookings()) {
+            System.out.println(b.getId());
+        }
         System.out.println("------------------------------");
         
         em.close();

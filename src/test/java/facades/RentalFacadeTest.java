@@ -11,18 +11,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import utils.Settings;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
 
 //Uncomment the line below, to temporarily disable this test
 @Disabled
-public class FacadeExampleTest {
+public class RentalFacadeTest {
 
     private static EntityManagerFactory emf;
-    private static FacadeExample facade;
+    private static RentalFacade facade;
 
-    public FacadeExampleTest() {
+    public RentalFacadeTest() {
     }
 
     //@BeforeAll
@@ -33,7 +32,7 @@ public class FacadeExampleTest {
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
-        facade = FacadeExample.getFacadeExample(emf);
+        facade = RentalFacade.getFacadeExample(emf);
     }
 
     /*   **** HINT **** 
@@ -45,7 +44,7 @@ public class FacadeExampleTest {
     @BeforeAll
     public static void setUpClassV2() {
        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST,Strategy.DROP_AND_CREATE);
-       facade = FacadeExample.getFacadeExample(emf);
+       facade = RentalFacade.getFacadeExample(emf);
     }
 
     @AfterAll
@@ -73,12 +72,6 @@ public class FacadeExampleTest {
     @AfterEach
     public void tearDown() {
 //        Remove any data after each test was run
-    }
-
-    // TODO: Delete or change this method 
-    @Test
-    public void testAFacadeMethod() {
-        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
     }
 
 }
