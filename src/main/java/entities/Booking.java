@@ -1,41 +1,39 @@
 package entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import javax.persistence.*;
 
 /**
  *
- * @author mikkel
+ * @author Kodebanditterne
  */
 @Entity
-@Table(name = "orders")
+@Table(name = "bookings")
 public class Booking implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private Integer id;
+    
     @ManyToOne
+    @JoinColumn(name = "User")
     private User user;
-
-    @OneToMany
-    private List<OrderLine> ol;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date d;
+    private Date date;
 
-    public Booking() {
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public Booking() {
+        this.date = new Date();
     }
 
     public User getUser() {
@@ -44,22 +42,6 @@ public class Booking implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public List<OrderLine> getOl() {
-        return ol;
-    }
-
-    public void setOl(List<OrderLine> ol) {
-        this.ol = ol;
-    }
-
-    public Date getDate() {
-        return d;
-    }
-
-    public void setDate(Date d) {
-        this.d = d;
     }
     
 }

@@ -1,10 +1,8 @@
 package utils;
 
-import entities.Car;
 import entities.Booking;
-import entities.OrderLine;
-import java.util.ArrayList;
-import java.util.List;
+import entities.User;
+import entities.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -21,38 +19,41 @@ public class SetupTestUsers {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         
-        //Create Cars Entities
-        Car car1 = new Car();
-        car1.setCarDetails("Some details...");
+        //Create Role Entity
+        Role userRole = new Role("user");
+        Role adminRole = new Role("admin");
+        em.persist(userRole);
+        em.persist(adminRole);
         
-        Car car2 = new Car();
-        car2.setCarDetails("Some details...");
+        //Create User Entity
+        User user1 = new User();
+        user1.setUserName("Benni");
+        user1.setUserPass("test1");
+        user1.addRole(userRole);
+        em.persist(user1);
         
-        Car car3 = new Car();
-        car3.setCarDetails("Some details...");
-        
-        //Create OrderLines Entities
-        OrderLine orderline1 = new OrderLine();
-        orderline1.setCar(car1);
-        
-        OrderLine orderline2 = new OrderLine();
-        orderline2.setCar(car2);
-        
-        OrderLine orderline3 = new OrderLine();
-        orderline3.setCar(car3);
-        
-        List<OrderLine> orderlines = new ArrayList();
-        orderlines.add(orderline1);
-        orderlines.add(orderline2);
-        orderlines.add(orderline3);
+        User admin1 = new User();
+        admin1.setUserName("Nick");
+        admin1.setUserPass("test2");
+        admin1.addRole(adminRole);
+        em.persist(admin1);
         
         //Create Booking Entity
-        Booking order1 = new Booking();
-        order1.setOl(orderlines);
+        Booking booking1 = new Booking();
+        booking1.setUser(user1);
+        em.persist(booking1);
         
         em.getTransaction().commit();
+        
+        
+        Booking found = (Booking) em.find(Booking.class, 1);
+        System.out.println("------------------------------");
+        System.out.println(found.getUser().getUserName());
+        System.out.println("------------------------------");
+        
         em.close();
         emf.close();
+        
     }
 
 }
