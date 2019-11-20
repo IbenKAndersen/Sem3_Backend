@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "orders")
-public class Order implements Serializable {
+public class Booking implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,7 +27,7 @@ public class Order implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date d;
 
-    public Order() {
+    public Booking() {
     }
 
     public int getId() {

@@ -1,8 +1,8 @@
 package entities;
+
 /**
  * @author benjaminbajrami
  */
-
 public class Insurance {
 
     private boolean insurance;

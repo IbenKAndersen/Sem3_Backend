@@ -1,7 +1,7 @@
 package utils;
 
 import entities.Car;
-import entities.Order;
+import entities.Booking;
 import entities.OrderLine;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +46,8 @@ public class SetupTestUsers {
         orderlines.add(orderline2);
         orderlines.add(orderline3);
         
-        //Create Order Entity
-        Order order1 = new Order();
+        //Create Booking Entity
+        Booking order1 = new Booking();
         order1.setOl(orderlines);
         
         em.getTransaction().commit();

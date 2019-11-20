@@ -12,6 +12,12 @@ public class OrderLine implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @OneToOne
+    private Car car;
+
+    @ManyToOne
+    private Booking order;
+    
     public OrderLine() {
     }
 
@@ -22,23 +28,7 @@ public class OrderLine implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-
-    private int qty;
-
-    @OneToOne
-    private Car car;
-
-    @ManyToOne
-    private Order order;
-
-    public int getQty() {
-        return qty;
-    }
-
-    public void setQty(int qty) {
-        this.qty = qty;
-    }
-
+    
     public Car getCar() {
         return car;
     }
@@ -47,11 +37,11 @@ public class OrderLine implements Serializable {
         this.car = car;
     }
 
-    public Order getOrder() {
+    public Booking getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(Booking order) {
         this.order = order;
     }
     
