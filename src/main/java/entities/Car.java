@@ -16,14 +16,14 @@ import java.util.List;
  *
  * @author benjaminbajrami
  */
+
 @Entity
 @Table(name = "cars")
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
+    
     @Column(name = "car_id", length = 25)
     private int carId;
     @Basic(optional = false)
@@ -38,14 +38,15 @@ public class Car implements Serializable {
     @NotNull
     @Column(name = "car_details", length = 255)
     private String carDetails;
-    @OneToOne 
-    private OrderLine orderlines;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "car_totalprice", length = 25)
+    private int totalprice;
     @OneToOne
-    private Insurance insurance;
+    private OrderLine orderlines;
     @ManyToOne
     private Location location;
-    @OneToMany
-    private List<Equipment> equipment;
+
 
     public int getCarId() {
         return carId;
@@ -87,14 +88,6 @@ public class Car implements Serializable {
         this.orderlines = orderlines;
     }
 
-    public Insurance getInsurance() {
-        return insurance;
-    }
-
-    public void setInsurance(Insurance insurance) {
-        this.insurance = insurance;
-    }
-
     public Location getLocation() {
         return location;
     }
@@ -103,17 +96,13 @@ public class Car implements Serializable {
         this.location = location;
     }
 
-    public List<Equipment> getEquipment() {
-        return equipment;
+    public int getTotalprice() {
+        return totalprice;
     }
 
-    public void setEquipment(List<Equipment> equipment) {
-        this.equipment = equipment;
+    public void setTotalprice(int totalprice) {
+        this.totalprice = totalprice;
     }
-
-    @Override
-    public String toString() {
-        return "Car{" + "carId=" + carId + ", carMake=" + carMake + ", carModel=" + carModel + ", carDetails=" + carDetails + ", orderlines=" + orderlines + ", insurance=" + insurance + ", location=" + location + ", equipment=" + equipment + '}';
-    }
-
+    
+    
 }
