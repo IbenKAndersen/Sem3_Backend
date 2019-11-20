@@ -5,6 +5,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * @author mikkel
+ */
 @Entity
 @Table(name = "orders")
 public class Order implements Serializable {
@@ -33,7 +37,7 @@ public class Order implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public User getUser() {
         return user;
     }
@@ -57,4 +61,5 @@ public class Order implements Serializable {
     public void setDate(Date d) {
         this.d = d;
     }
+    
 }

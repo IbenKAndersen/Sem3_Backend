@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import entities.Location;
+import java.util.List;
 
 /**
  *
@@ -50,10 +52,7 @@ public class Car implements Serializable {
     @ManyToOne
     private Location location;
     @OneToMany
-    private Equipment equipment;
-    //TO-DO: create classes and relationships
-    
-    
+    private List<Equipment> equipment;
 
     public int getCarId() {
         return carId;
@@ -87,11 +86,11 @@ public class Car implements Serializable {
         this.carDetails = carDetails;
     }
 
-    public Orderline getOrderlines() {
+    public OrderLine getOrderlines() {
         return orderlines;
     }
 
-    public void setOrderlines(Orderline orderlines) {
+    public void setOrderlines(OrderLine orderlines) {
         this.orderlines = orderlines;
     }
 
