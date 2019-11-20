@@ -1,50 +1,59 @@
 package utils;
 
-
-import entities.Role;
+import entities.Booking;
 import entities.User;
-
+import entities.Role;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+/**
+ * 
+ * @author mikkel
+ * For testing only!!!
+ */
 public class SetupTestUsers {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
-    EntityManager em = emf.createEntityManager();
-    
-    // IMPORTAAAAAAAAAANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // This breaks one of the MOST fundamental security rules in that it ships with default users and passwords
-    // CHANGE the three passwords below, before you uncomment and execute the code below
-    // Also, either delete this file, when users are created or rename and add to .gitignore
-    // Whatever you do DO NOT COMMIT and PUSH with the real passwords
-
-    User user = new User("user", "test1");
-    User admin = new User("admin", "test2");
-    User both = new User("user_admin", "test3");
-
-    if(admin.getUserPass().equals("test")||user.getUserPass().equals("test")||both.getUserPass().equals("test"))
-      throw new UnsupportedOperationException("You have not changed the passwords");
-
-    em.getTransaction().begin();
-    Role userRole = new Role("user");
-    Role adminRole = new Role("admin");
-    user.addRole(userRole);
-    admin.addRole(adminRole);
-    both.addRole(userRole);
-    both.addRole(adminRole);
-    em.persist(userRole);
-    em.persist(adminRole);
-    em.persist(user);
-    em.persist(admin);
-    em.persist(both);
-    em.getTransaction().commit();
-    System.out.println("PW: " + user.getUserPass());
-    System.out.println("Testing user with OK password: " + user.verifyPassword("test1"));
-    System.out.println("Testing user with wrong password: " + user.verifyPassword("test"));
-    System.out.println("Created TEST Users");
-   
-  }
+        EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST, EMF_Creator.Strategy.DROP_AND_CREATE);
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        
+        //Create Role Entity
+        Role userRole = new Role("user");
+        Role adminRole = new Role("admin");
+        em.persist(userRole);
+        em.persist(adminRole);
+        
+        //Create User Entity
+        User user1 = new User();
+        user1.setUserName("Benni");
+        user1.setUserPass("test1");
+        user1.addRole(userRole);
+        em.persist(user1);
+        
+        User admin1 = new User();
+        admin1.setUserName("Nick");
+        admin1.setUserPass("test2");
+        admin1.addRole(adminRole);
+        em.persist(admin1);
+        
+        //Create Booking Entity
+        Booking booking1 = new Booking();
+        booking1.setUser(user1);
+        em.persist(booking1);
+        
+        em.getTransaction().commit();
+        
+        
+        Booking found = (Booking) em.find(Booking.class, 1);
+        System.out.println("------------------------------");
+        System.out.println(found.getUser().getUserName());
+        System.out.println("------------------------------");
+        
+        em.close();
+        emf.close();
+        
+    }
 
 }

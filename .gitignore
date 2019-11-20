@@ -276,3 +276,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,macos,windows,netbeans
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/misc.xml
+/.idea/vcs.xml
+/.idea/artifacts/Sem3_Backend_war.xml
+/.idea/artifacts/Sem3_Backend_war_exploded.xml
