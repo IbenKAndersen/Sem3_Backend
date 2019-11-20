@@ -2,10 +2,13 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * @author mikkel
+ */
 @Entity
 @Table(name = "orders")
 public class Order implements Serializable {
@@ -14,6 +17,15 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne
+    private User user;
+
+    @OneToMany
+    private List<OrderLine> ol;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date d;
 
     public Order() {
     }
@@ -26,16 +38,6 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "orders")
-    private User user;
-    @ElementCollection
-    private List<Orderline> orderLines = new ArrayList<Orderline>();
-    @Basic
-    private double totalCost = 0;
-    @ManyToOne
-    private Orderline ol;
-    private Date date;
-
     public User getUser() {
         return user;
     }
@@ -44,41 +46,20 @@ public class Order implements Serializable {
         this.user = user;
     }
 
-    public Orderline getOl() {
+    public List<OrderLine> getOl() {
         return ol;
     }
 
-    public void setOl(Orderline ol) {
+    public void setOl(List<OrderLine> ol) {
         this.ol = ol;
     }
 
     public Date getDate() {
-        return date;
+        return d;
     }
 
-    public void setDate(Date date)
-    {
-        this.date = date;
+    public void setDate(Date d) {
+        this.d = d;
     }
-
-    public List<Orderline> getOrderLines() {
-        return orderLines;
-    }
-
-    public void setOrderLines(List<Orderline> orderLines) {
-        this.orderLines = orderLines;
-    }
-
-    public double getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
-    }
-    public void addOrderLine(Orderline orderLine) {
-        getOrderLines().add(orderLine);
-        orderLine.setLineNumber(getOrderLines().size());
-        setTotalCost(getTotalCost() + orderLine.getCost());
-    }
+    
 }

@@ -45,8 +45,8 @@ public class Car implements Serializable {
     @NotNull
     @Column(name = "car_details", length = 255)
     private String carDetails;
-    @OneToOne
-    private Orderline orderlines;
+    @OneToOne 
+    private OrderLine orderlines;
     @OneToOne
     private Insurance insurance;
     @ManyToOne
@@ -86,11 +86,11 @@ public class Car implements Serializable {
         this.carDetails = carDetails;
     }
 
-    public Orderline getOrderlines() {
+    public OrderLine getOrderlines() {
         return orderlines;
     }
 
-    public void setOrderlines(Orderline orderlines) {
+    public void setOrderlines(OrderLine orderlines) {
         this.orderlines = orderlines;
     }
 
