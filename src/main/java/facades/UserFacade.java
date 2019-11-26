@@ -6,7 +6,8 @@ import javax.persistence.EntityManagerFactory;
 import errorhandling.AuthenticationException;
 
 /**
- * @author lam@cphbusiness.dk
+ * 
+ * @author Kodebanditterne
  */
 public class UserFacade {
   
@@ -20,7 +21,7 @@ public class UserFacade {
      * @param _emf
      * @return the instance of this facade.
      */
-    public static UserFacade getUserFacade (EntityManagerFactory _emf) {
+    public static UserFacade getUserFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new UserFacade();

@@ -1,8 +1,5 @@
 package entities;
 
-import static entities.OrderLine_.equipment;
-import static entities.OrderLine_.insurance;
-import static entities.OrderLine_.location;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -114,12 +111,5 @@ public class Car implements Serializable {
     public void setLocation(Location location) {
         this.location = location;
     }
-    
-
-    @Override
-    public String toString() {
-        return "Car{" + "carId=" + carId + ", carMake=" + carMake + ", carModel=" + carModel + ", carDetails=" + carDetails + ", orderlines=" + orderline + ", insurance=" + insurance + ", location=" + location + ", equipment=" + equipment + '}';
-    }
-
     
 }

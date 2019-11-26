@@ -32,7 +32,7 @@ public class Order_DTO_IN {
                 this.ol.add(new Orderline_DTO_IN(ol));
             }
         }
-        this.d = order.getDate();
+        this.d = order.getD();
 
     }
 
