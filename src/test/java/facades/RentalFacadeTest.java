@@ -22,7 +22,7 @@ import utils.EMF_Creator.Strategy;
 public class RentalFacadeTest {
 
     private static EntityManagerFactory EMF;
-    private static RentalFacade FACADE;
+    private static OrderFacade FACADE;
 
     public RentalFacadeTest() {
     }
@@ -30,7 +30,7 @@ public class RentalFacadeTest {
     @BeforeAll
     public static void setUpClass() {
         EMF = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
-        FACADE = RentalFacade.getRentalFacade(EMF);
+        FACADE = OrderFacade.getOrderFacade(EMF);
     }
 
     @AfterAll

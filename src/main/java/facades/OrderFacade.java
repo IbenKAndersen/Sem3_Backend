@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package facades;
 
 import dto.Car_DTO;
@@ -12,9 +7,7 @@ import entities.Car;
 import entities.CarMake;
 import entities.CarModel;
 import entities.Order;
-import entities.User;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,7 +21,7 @@ public class OrderFacade {
     private static EntityManagerFactory emf;
     private static OrderFacade instance;
 
-    public static OrderFacade getFacadeExample(EntityManagerFactory _emf) {
+    public static OrderFacade getOrderFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new OrderFacade();

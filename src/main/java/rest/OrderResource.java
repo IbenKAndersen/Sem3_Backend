@@ -9,8 +9,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.Car_DTO;
 import dto.Car_DTO_IN;
-import dto.Order_DTO;
-import entities.Order;
 import facades.OrderFacade;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.Context;
@@ -39,7 +37,7 @@ public class OrderResource {
                 "dev",
                 "ax2",
                 EMF_Creator.Strategy.CREATE);
-    private static final OrderFacade FACADE =  OrderFacade.getFacadeExample(EMF);
+    private static final OrderFacade FACADE =  OrderFacade.getOrderFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @Context
