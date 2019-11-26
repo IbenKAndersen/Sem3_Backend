@@ -9,6 +9,8 @@
     <class>entities.Role</class>
     <class>entities.User</class>
     <class>entities.Car</class>
+    <class>entities.CarMake</class>
+    <class>entities.CarModel</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <!-- DO NOT remove the line below. It's not set by the  entityUtils.EMF_Creator -->

@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -18,20 +19,24 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name = "location")
 public class Location implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "location_id")
     private int id;
+    
     @Column(name = "address")
     private String address;
+    
     @Column(name = "coordinates")
     private String coord;
-    @JoinTable(name = "cars_on_location", joinColumns = {
-    @JoinColumn(name = "car_id", referencedColumnName = "car_id")}, inverseJoinColumns = {
-    @JoinColumn(name = "location_id", referencedColumnName = "location_id")})
-    @OneToMany
-    private List<Car> cars = new ArrayList();
+    
+        @OneToMany(
+        mappedBy = "location",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Car> cars_on_location = new ArrayList();
 
     public Location() {
     }
@@ -57,17 +62,16 @@ public class Location implements Serializable {
         this.coord = coord;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Car> getCars_on_location() {
+        return cars_on_location;
     }
 
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
+    public void setCars_on_location(List<Car> cars_on_location) {
+        this.cars_on_location = cars_on_location;
     }
 
     public int getId() {
         return id;
     }
-    
-    
+
 }

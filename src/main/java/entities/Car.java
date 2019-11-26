@@ -1,16 +1,19 @@
 package entities;
 
+import static entities.OrderLine_.equipment;
+import static entities.OrderLine_.insurance;
+import static entities.OrderLine_.location;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  *
@@ -24,28 +27,44 @@ public class Car implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "car_id", length = 25)
+    @Column(name = "car_id", length = 255)
     private int carId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "car_make", length = 25)
-    private String carMake;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "car_model", length = 30)
-    private String carModel;
+    
+   @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cars_by_make")
+    private CarMake carMake;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "model_of_car")
+    private CarModel carModel;
+    
     @Basic(optional = false)
     @NotNull
     @Column(name = "car_details", length = 255)
     private String carDetails;
-    @OneToOne 
-    private OrderLine orderlines;
+    
     @OneToOne
-    private Insurance insurance;
-    @ManyToOne
+    private OrderLine orderline;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cars_On_Location_id")
     private Location location;
-    @OneToMany
-    private List<Equipment> equipment;
+
+    public Car() {
+    }
+
+    public Car(CarMake carMake, CarModel carModel, String carDetails, OrderLine orderline) {
+        this.carMake = carMake;
+        this.carModel = carModel;
+        this.carDetails = carDetails;
+        this.orderline = orderline;
+    }
+
+    public Car(CarMake carMake, CarModel carModel, String carDetails) {
+        this.carMake = carMake;
+        this.carModel = carModel;
+        this.carDetails = carDetails;
+    }
 
     public int getCarId() {
         return carId;
@@ -55,21 +74,6 @@ public class Car implements Serializable {
         this.carId = carId;
     }
 
-    public String getCarMake() {
-        return carMake;
-    }
-
-    public void setCarMake(String carMake) {
-        this.carMake = carMake;
-    }
-
-    public String getCarModel() {
-        return carModel;
-    }
-
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
-    }
 
     public String getCarDetails() {
         return carDetails;
@@ -79,20 +83,28 @@ public class Car implements Serializable {
         this.carDetails = carDetails;
     }
 
-    public OrderLine getOrderlines() {
-        return orderlines;
+    public OrderLine getOrderline() {
+        return orderline;
     }
 
-    public void setOrderlines(OrderLine orderlines) {
-        this.orderlines = orderlines;
+    public void setOrderline(OrderLine orderline) {
+        this.orderline = orderline;
     }
 
-    public Insurance getInsurance() {
-        return insurance;
+    public CarMake getCarMake() {
+        return carMake;
     }
 
-    public void setInsurance(Insurance insurance) {
-        this.insurance = insurance;
+    public void setCarMake(CarMake carMake) {
+        this.carMake = carMake;
+    }
+
+    public CarModel getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(CarModel carModel) {
+        this.carModel = carModel;
     }
 
     public Location getLocation() {
@@ -102,18 +114,12 @@ public class Car implements Serializable {
     public void setLocation(Location location) {
         this.location = location;
     }
-
-    public List<Equipment> getEquipment() {
-        return equipment;
-    }
-
-    public void setEquipment(List<Equipment> equipment) {
-        this.equipment = equipment;
-    }
+    
 
     @Override
     public String toString() {
-        return "Car{" + "carId=" + carId + ", carMake=" + carMake + ", carModel=" + carModel + ", carDetails=" + carDetails + ", orderlines=" + orderlines + ", insurance=" + insurance + ", location=" + location + ", equipment=" + equipment + '}';
+        return "Car{" + "carId=" + carId + ", carMake=" + carMake + ", carModel=" + carModel + ", carDetails=" + carDetails + ", orderlines=" + orderline + ", insurance=" + insurance + ", location=" + location + ", equipment=" + equipment + '}';
     }
 
+    
 }

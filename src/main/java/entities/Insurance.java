@@ -1,16 +1,30 @@
 package entities;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 /**
  * @author benjaminbajrami
  */
-public class Insurance {
+@Entity
+@Table(name = "insurance")
+public class Insurance implements Serializable{
 
     private boolean insurance;
     private int price;
+    @Id
+    private int id;
+    
+    @OneToOne
+    private OrderLine orderline;
 
-    public Insurance(boolean insurance, int price) {
+    public Insurance(boolean insurance, int price, OrderLine orderline) {
         this.insurance = insurance;
         this.price = price;
+        this.orderline = orderline;
     }
 
     public Insurance() {
@@ -32,11 +46,21 @@ public class Insurance {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Insurance{" +
-                "insurance=" + insurance +
-                ", price=" + price +
-                '}';
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public OrderLine getOrderline() {
+        return orderline;
+    }
+
+    public void setOrderline(OrderLine orderline) {
+        this.orderline = orderline;
+    }
+    
+    
 }
