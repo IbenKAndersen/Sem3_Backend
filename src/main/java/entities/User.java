@@ -8,6 +8,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ *
+ * @author Kodebanditterne
+ */
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -38,17 +42,6 @@ public class User implements Serializable {
     )
     private List<Order> orders = new ArrayList<>();
 
-    public List<String> getRolesAsStrings() {
-        if (roleList.isEmpty()) {
-            return null;
-        }
-        List<String> rolesAsStrings = new ArrayList();
-        for (Role role : roleList) {
-            rolesAsStrings.add(role.getRoleName());
-        }
-        return rolesAsStrings;
-    }
-
     public User() {
     }
 
@@ -64,7 +57,6 @@ public class User implements Serializable {
 
     public User(String userName, String userPass) {
         this.userName = userName;
-
         this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt(12));
     }
 
@@ -95,6 +87,27 @@ public class User implements Serializable {
 
     public void addRole(Role userRole) {
         roleList.add(userRole);
+
+        this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt(12));
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<String> getRolesAsStrings() {
+        if (roleList.isEmpty()) {
+            return null;
+        }
+        List<String> rolesAsStrings = new ArrayList();
+        for (Role role : roleList) {
+            rolesAsStrings.add(role.getRoleName());
+        }
+        return rolesAsStrings;
     }
 
 }

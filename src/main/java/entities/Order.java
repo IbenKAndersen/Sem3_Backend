@@ -1,13 +1,13 @@
 package entities;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.*;
 
 /**
  *
- * @author mikkel
+ * @author Kodebanditterne
  */
 @Entity
 @NamedQueries({
@@ -23,7 +23,6 @@ public class Order implements Serializable {
     @Column(name = "order_id")
     private int id;
 
-    
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -50,10 +49,10 @@ public class Order implements Serializable {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-
+    
     public User getUser() {
         return user;
     }
@@ -70,11 +69,11 @@ public class Order implements Serializable {
         this.ol = ol;
     }
 
-    public Date getDate() {
+    public Date getD() {
         return d;
     }
 
-    public void setDate(Date d) {
+    public void setD(Date d) {
         this.d = d;
     }
     
