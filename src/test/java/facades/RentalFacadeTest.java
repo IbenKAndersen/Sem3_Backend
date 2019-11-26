@@ -1,6 +1,6 @@
 package facades;
 
-import entities.Booking;
+import entities.Order;
 import utils.EMF_Creator;
 import entities.Role;
 import entities.User;
@@ -65,16 +65,16 @@ public class RentalFacadeTest {
             em.persist(admin1);
 
             //Create Booking Entity
-            Booking booking1 = new Booking();
-            Booking booking2 = new Booking();
-            List<Booking> list = new ArrayList();
-            list.add(booking1);
-            list.add(booking2);
-            user1.setBookings(list);
-            booking1.setUser(user1);
-            booking2.setUser(user1);
-            em.persist(booking1);
-            em.persist(booking2);
+            Order order1 = new Order();
+            Order order2 = new Order();
+            List<Order> list = new ArrayList();
+            list.add(order1);
+            list.add(order2);
+            user1.setOrders(list);
+            order1.setUser(user1);
+            order2.setUser(user1);
+            em.persist(order1);
+            em.persist(order2);
 
             em.getTransaction().commit();
         } finally {

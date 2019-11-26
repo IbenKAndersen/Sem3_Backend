@@ -49,7 +49,6 @@ public class LoginEndpoint {
       responseJson.addProperty("username", username);
       responseJson.addProperty("token", token);
       return Response.ok(new Gson().toJson(responseJson)).build();
-
     } catch (JOSEException | AuthenticationException ex) {
       if (ex instanceof AuthenticationException) {
         throw (AuthenticationException) ex;
