@@ -1,6 +1,8 @@
 package utils;
 
-import entities.Booking;
+import entities.Car;
+import entities.Order;
+import entities.OrderLine;
 import entities.User;
 import entities.Role;
 import java.util.ArrayList;
@@ -9,9 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 /**
- * 
- * @author mikkel
- * For testing only!!!
+ *
+ * @author mikkel For testing only!!!
  */
 public class SetupTestUsers {
 
@@ -20,51 +21,67 @@ public class SetupTestUsers {
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST, EMF_Creator.Strategy.DROP_AND_CREATE);
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        
-        //Create Role Entity
-        Role userRole = new Role("user");
-        Role adminRole = new Role("admin");
-        em.persist(userRole);
-        em.persist(adminRole);
-        
-        //Create User Entity
-        User user1 = new User();
-        user1.setUserName("Benni");
-        user1.setUserPass("test1");
-        user1.addRole(userRole);
-        em.persist(user1);
-        
-        User admin1 = new User();
-        admin1.setUserName("Nick");
-        admin1.setUserPass("test2");
-        admin1.addRole(adminRole);
-        em.persist(admin1);
-        
+
+        //Create Cars Entities
+        Car car1 = new Car();
+        car1.setCarDetails("Some details...");
+
+        Car car2 = new Car();
+        car2.setCarDetails("Some details...");
+
+        Car car3 = new Car();
+        car3.setCarDetails("Some details...");
+
+        //Create OrderLines Entities
+        OrderLine orderline1 = new OrderLine();
+        orderline1.setCar(car1);
+
+        OrderLine orderline2 = new OrderLine();
+        orderline2.setCar(car2);
+
+        OrderLine orderline3 = new OrderLine();
+        orderline3.setCar(car3);
+
+        List<OrderLine> orderlines = new ArrayList();
+        orderlines.add(orderline1);
+        orderlines.add(orderline2);
+        orderlines.add(orderline3);
+
         //Create Booking Entity
-        Booking booking1 = new Booking();
-        List<Booking> list = new ArrayList();
-        list.add(booking1);
-        user1.setBookings(list);
-        booking1.setUser(user1);
-        
-        em.persist(booking1);
+        Order order1 = new Order();
+        order1.setOl(orderlines);
+        em.persist(order1);
         em.getTransaction().commit();
-        
-        
-        Booking foundBooking = (Booking) em.find(Booking.class, 1);
-        User foundUser = (User) em.find(User.class, "Benni");
-        System.out.println("------------------------------");
-        for (Booking b : foundBooking.getUser().getBookings()) {
-            System.out.println(b.getId());
-        }
-        for (Booking b : foundUser.getBookings()) {
-            System.out.println(b.getId());
-        }
-        System.out.println("------------------------------");
-        
         em.close();
         emf.close();
         
+        
+        
+    User user = new User("user", "test1");
+    User admin = new User("admin", "test2");
+    User both = new User("user_admin", "test3");
+
+    if(admin.getUserPass().equals("test")||user.getUserPass().equals("test")||both.getUserPass().equals("test"))
+      throw new UnsupportedOperationException("You have not changed the passwords");
+
+    em.getTransaction().begin();
+    Role userRole = new Role("user");
+    Role adminRole = new Role("admin");
+    user.addRole(userRole);
+    admin.addRole(adminRole);
+    both.addRole(userRole);
+    both.addRole(adminRole);
+    em.persist(userRole);
+    em.persist(adminRole);
+    em.persist(user);
+    em.persist(admin);
+    em.persist(both);
+    em.getTransaction().commit();
+    System.out.println("PW: " + user.getUserPass());
+    System.out.println("Testing user with OK password: " + user.verifyPassword("test1"));
+    System.out.println("Testing user with wrong password: " + user.verifyPassword("test"));
+    System.out.println("Created TEST Users");
+   
     }
 
 }
