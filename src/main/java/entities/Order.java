@@ -30,7 +30,7 @@ public class Order implements Serializable {
     @JoinTable(name = "orderlines_on_order", 
             joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")}, 
             inverseJoinColumns = {@JoinColumn(name = "orderline_id", referencedColumnName = "orderline_id")})
-    @OneToMany
+    @OneToMany (cascade = CascadeType.PERSIST)
     private List<OrderLine> ol;
     
     @Temporal(javax.persistence.TemporalType.DATE)

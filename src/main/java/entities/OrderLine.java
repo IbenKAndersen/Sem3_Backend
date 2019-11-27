@@ -18,7 +18,7 @@ public class OrderLine implements Serializable {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     private Order order;
             
     @OneToOne(fetch = FetchType.LAZY, 
@@ -26,7 +26,7 @@ public class OrderLine implements Serializable {
     @JoinColumn(name = "insurance_on_orderline")
     private Insurance insurance;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Location location;
     @JoinTable(name = "equipment_on_orderline",
             joinColumns = {
@@ -40,20 +40,25 @@ public class OrderLine implements Serializable {
     )
     private List<Equipment> equipment;
     
-    @Column(name = "rental_period")
-    private String rentalPeriod;
+    @Column(name = "rental_period_start")
+    private String rentalPeriodStart;
+    @Column(name = "rental_period_end")
+    private String rentalPeriodEnd;
 
     public OrderLine() {
     }
 
-    public OrderLine(Car car, Order order, Insurance insurance, Location location, List<Equipment> equipment, String rentalPeriod) {
+    public OrderLine(Car car, Order order, Insurance insurance, Location location, List<Equipment> equipment, String rentalPeriodStart, String rentalPeriodEnd) {
         this.car = car;
         this.order = order;
         this.insurance = insurance;
         this.location = location;
         this.equipment = equipment;
-        this.rentalPeriod = rentalPeriod;
+        this.rentalPeriodStart = rentalPeriodStart;
+        this.rentalPeriodEnd = rentalPeriodEnd;
     }
+
+
 
     public int getId() {
         return id;
@@ -103,13 +108,23 @@ public class OrderLine implements Serializable {
         this.equipment = equipment;
     }
 
-    public String getRentalPeriod() {
-        return rentalPeriod;
+    public String getRentalPeriodStart() {
+        return rentalPeriodStart;
     }
 
-    public void setRentalPeriod(String rentalPeriod) {
-        this.rentalPeriod = rentalPeriod;
+    public void setRentalPeriodStart(String rentalPeriodStart) {
+        this.rentalPeriodStart = rentalPeriodStart;
     }
+
+    public String getRentalPeriodEnd() {
+        return rentalPeriodEnd;
+    }
+
+    public void setRentalPeriodEnd(String rentalPeriodEnd) {
+        this.rentalPeriodEnd = rentalPeriodEnd;
+    }
+
+    
     
     
 

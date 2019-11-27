@@ -2,6 +2,8 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -13,9 +15,11 @@ import javax.persistence.Table;
 @Table(name = "insurance")
 public class Insurance implements Serializable{
 
+    private static final long serialVersionUID = 1L;
     private boolean insurance;
     private int price;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @OneToOne
