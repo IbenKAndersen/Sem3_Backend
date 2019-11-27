@@ -5,14 +5,11 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entities.Role</class>
     <class>entities.User</class>
-<<<<<<< HEAD
     <class>entities.Car</class>
     <class>entities.CarMake</class>
     <class>entities.CarModel</class>
-=======
     <class>entities.RenameMe</class>
-    <class>entities.Booking</class>
->>>>>>> dev2
+    <class>entities.Order</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <!-- DO NOT remove the line below. It's not set by the  entityUtils.EMF_Creator -->

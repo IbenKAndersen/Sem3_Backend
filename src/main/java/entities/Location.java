@@ -33,7 +33,7 @@ public class Location implements Serializable {
     
         @OneToMany(
         mappedBy = "location",
-        cascade = CascadeType.ALL,
+        cascade = CascadeType.PERSIST,
         orphanRemoval = true
     )
     private List<Car> cars_on_location = new ArrayList();
