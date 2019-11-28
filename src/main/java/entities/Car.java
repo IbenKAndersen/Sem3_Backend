@@ -44,11 +44,11 @@ public class Car implements Serializable {
     @Column(name = "car_details", length = 255)
     private String carDetails;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private OrderLine orderline;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cars_On_Location_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "car_On_Location")
     private Location location;
 
     public Car() {

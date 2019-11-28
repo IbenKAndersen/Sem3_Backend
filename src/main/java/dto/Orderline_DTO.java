@@ -21,7 +21,8 @@ public class Orderline_DTO {
     private Insurance_DTO insurance;
     private Location_DTO location;
     private List<Equipment_DTO> equipment;
-    private String rentalPeriod;
+    private String rentalPeriodStart;
+    private String rentalPeriodEnd;
 
     public Orderline_DTO() {
     }
@@ -36,7 +37,8 @@ public class Orderline_DTO {
                 this.equipment.add(new Equipment_DTO(equipment));
             });
         }
-        this.rentalPeriod = ol.getRentalPeriod();
+        this.rentalPeriodStart = ol.getRentalPeriodStart();
+        this.rentalPeriodEnd = ol.getRentalPeriodEnd();
     }
 
     public int getId() {
@@ -87,19 +89,20 @@ public class Orderline_DTO {
         this.equipment = equipment;
     }
 
-    public String getRentalPeriod() {
-        return rentalPeriod;
+    public String getRentalPeriodStart() {
+        return rentalPeriodStart;
     }
 
-    public void setRentalPeriod(String rentalPeriod) {
-        this.rentalPeriod = rentalPeriod;
+    public void setRentalPeriodStart(String rentalPeriodStart) {
+        this.rentalPeriodStart = rentalPeriodStart;
     }
-    
-    
 
-    @Override
-    public String toString() {
-        return "Orderline_DTO{" + "id=" + id + ", car=" + car + ", order=" + order + '}';
+    public String getRentalPeriodEnd() {
+        return rentalPeriodEnd;
+    }
+
+    public void setRentalPeriodEnd(String rentalPeriodEnd) {
+        this.rentalPeriodEnd = rentalPeriodEnd;
     }
 
 }

@@ -11,6 +11,7 @@ import entities.OrderLine;
 import entities.User;
 import entities.Role;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -171,11 +172,13 @@ public class SetupTestUsers {
         orderlines.add(orderline1);
         orderlines.add(orderline2);
         orderlines.add(orderline3);
-
+        // Create Current date
+        Date d = new Date();
         //Create Booking Entity
         Order order1 = new Order();
         order1.setOl(orderlines);
         order1.setUser(user);
+        order1.setD(d);
         em.persist(order1);
         em.getTransaction().commit();
         em.close();
