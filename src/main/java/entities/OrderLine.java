@@ -19,6 +19,7 @@ public class OrderLine implements Serializable {
     private Car car;
 
     @ManyToOne (cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "orderline")
     private Order order;
             
     @OneToOne(fetch = FetchType.LAZY, 

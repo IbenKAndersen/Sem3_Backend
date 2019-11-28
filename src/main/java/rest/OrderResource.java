@@ -52,14 +52,14 @@ public class OrderResource {
         throw new UnsupportedOperationException();
     }
     
-    @POST
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Response addCar(String car1) {
-        Car_DTO_IN newCar = GSON.fromJson(car1, Car_DTO_IN.class);
-        Car_DTO car = FACADE.addCar(newCar);
-        return Response.ok(car).build();
-    }
+//    @POST
+//    @Produces({MediaType.APPLICATION_JSON})
+//    @Consumes({MediaType.APPLICATION_JSON})
+//    public Response addCar(String car1) {
+//        Car_DTO_IN newCar = GSON.fromJson(car1, Car_DTO_IN.class);
+//        Car_DTO car = FACADE.addCar(newCar);
+//        return Response.ok(car).build();
+//    }
 
     /**
      * PUT method for updating or creating an instance of OrderResource

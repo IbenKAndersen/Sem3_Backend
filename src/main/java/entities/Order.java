@@ -33,6 +33,9 @@ public class Order implements Serializable {
     @OneToMany (cascade = CascadeType.PERSIST)
     private List<OrderLine> ol;
     
+    @OneToOne
+    private OrderLine orderline;
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date d;
 
@@ -76,5 +79,15 @@ public class Order implements Serializable {
     public void setD(Date d) {
         this.d = d;
     }
+
+    public OrderLine getOrderline() {
+        return orderline;
+    }
+
+    public void setOrderline(OrderLine orderline) {
+        this.orderline = orderline;
+    }
+    
+    
     
 }

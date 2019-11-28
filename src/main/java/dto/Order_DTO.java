@@ -19,6 +19,7 @@ public class Order_DTO {
     private int id;
     private User_DTO user;
     private List<Orderline_DTO> ol;
+    private Orderline_DTO orderline;
     private Date d;
 
     public Order_DTO() {
@@ -68,10 +69,12 @@ public class Order_DTO {
         this.d = d;
     }
 
-    @Override
-    public String toString() {
-        return "Order_DTO{" + "id=" + id + ", user=" + user + ", ol=" + ol + ", d=" + d + '}';
+    public Orderline_DTO getOrderline() {
+        return orderline;
     }
-    
+
+    public void setOrderline(Orderline_DTO orderline) {
+        this.orderline = orderline;
+    }
     
 }
