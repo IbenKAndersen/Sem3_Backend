@@ -7,6 +7,8 @@ import dto.Car_DTO_IN;
 import dto.Order_DTO;
 import entities.Order;
 import facades.OrderFacade;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -43,17 +45,6 @@ public class OrderResource {
     public OrderResource() {
     }
 
-    /**
-     * Retrieves representation of an instance of rest.OrderResource
-     * @return an instance of java.lang.String
-     */
-    @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
-        //TODO return proper representation object
-        throw new UnsupportedOperationException();
-    }
-    
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -62,14 +53,18 @@ public class OrderResource {
         Order_DTO finalOrder = new Order_DTO(FACADE.addOrder1(newOrder));
         return Response.ok(finalOrder).build();
     }
-
-    /**
-     * PUT method for updating or creating an instance of OrderResource
-     * @param content representation for the resource
-     */
-    @PUT
-    @Consumes(MediaType.APPLICATION_XML)
-    public void putXml(String content) {
+    
+    @Path("all")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAll() {
+        List<Order> order = FACADE.getAllOrders();
+        List<Order_DTO> odto = new ArrayList();
+        
+        for(Order o : order) {
+        odto.add(new Order_DTO(o));
+        }
+        return GSON.toJson(odto);
     }
     
     /**

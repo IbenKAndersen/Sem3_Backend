@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -107,5 +108,14 @@ public class OrderFacade {
         }
         return true;
     }
-
+    
+        public List<Order> getAllOrders() {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery<Order> query = em.createQuery("SELECT o FROM Order o", Order.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }
