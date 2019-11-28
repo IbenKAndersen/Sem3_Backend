@@ -34,7 +34,6 @@ public class OrderFacade {
     }
 
     public OrderFacade() {
-
     }
 
     public List<Order_DTO> getAllorders() {
@@ -69,6 +68,20 @@ public class OrderFacade {
         } finally {
             em.close();
         }
+    }
+
+    public boolean cancelOrder(int orderId) {
+        EntityManager em = getEntityManager();
+        Order order = (Order) em.find(Order.class, orderId);
+        try {
+            em.getTransaction().begin();
+            em.remove(order);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
 }
