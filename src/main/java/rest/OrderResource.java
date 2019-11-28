@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.Car_DTO;
 import dto.Car_DTO_IN;
+import dto.Order_DTO;
+import entities.Order;
 import facades.OrderFacade;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.Context;
@@ -52,14 +54,14 @@ public class OrderResource {
         throw new UnsupportedOperationException();
     }
     
-//    @POST
-//    @Produces({MediaType.APPLICATION_JSON})
-//    @Consumes({MediaType.APPLICATION_JSON})
-//    public Response addCar(String car1) {
-//        Car_DTO_IN newCar = GSON.fromJson(car1, Car_DTO_IN.class);
-//        Car_DTO car = FACADE.addCar(newCar);
-//        return Response.ok(car).build();
-//    }
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response addOrder(String order) {
+        Order newOrder = GSON.fromJson(order, Order.class);
+        Order_DTO finalOrder = new Order_DTO(FACADE.addOrder1(newOrder));
+        return Response.ok(finalOrder).build();
+    }
 
     /**
      * PUT method for updating or creating an instance of OrderResource

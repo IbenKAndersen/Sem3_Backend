@@ -7,6 +7,9 @@ import dto.Order_DTO_IN;
 import entities.Car;
 import entities.CarMake;
 import entities.CarModel;
+import entities.Equipment;
+import entities.Insurance;
+import entities.Location;
 import entities.Order;
 import entities.OrderLine;
 import entities.User;
@@ -53,14 +56,28 @@ public class OrderFacade {
         }
     }
 
+    public Order addOrder1(Order order){
+    EntityManager em = getEntityManager();
+    
+    User user = new User(order.getUser().getUserName(),order.getUser().getUserPass());
+    CarMake carMake = new CarMake(order.getOrderline().getCar().getCarMake().getName(), 
+                                  order.getOrderline().getCar().getCarMake().getCars_by_make(), 
+                                  order.getOrderline().getCar().getCarMake().getModels_of_make());
+    CarModel carModel = new CarModel(order.getOrderline().getCar().getCarModel().getModel_of_car(), 
+                                     carMake, order.getOrderline().getCar().getCarModel().getName());
+    Car car = new Car(carMake, carModel, order.getOrderline().getCar().getCarDetails());
+    Location location = new Location(order.getOrderline().getLocation().getAddress(), order.getOrderline().getLocation().getCoord());
+    Insurance insurance = new Insurance(order.getOrderline().getInsurance().isInsurance(),order.getOrderline().getInsurance().getPrice());
+    Equipment equipment = new Equipment(order.getOrderline(), 0)
+    }
     public Order_DTO addOrder(Order_DTO_IN newOrder) {
         EntityManager em = getEntityManager();
         User user = new User(newOrder.getUser().getUserName(), newOrder.getUser().getUserPass());
-        CarMake carMake = new CarMake(newOrder.getOrderline().getCar().getCarMake().getName(),
-                                      newOrder.getOrderline().getCar().getCarMake().getCars_by_make(),
-                                      newOrder.getOrderline().getCar().getCarMake().getModels_of_make());
-        CarModel carModel = new CarModel(newOrder.getOrderline().getCar().getCarModel().getModel_of_car(), 
-                                        carMake, newOrder);
+        CarMake carMake = new CarMake(newOrder.getOrderline().getCar().getMake().getName(),
+                                      newOrder.getOrderline().getCar().getMake().getCars_by_make(),
+                                      newOrder.getOrderline().getCar().getMake().getModels_of_make());
+        CarModel carModel = new CarModel(newOrder.getOrderline().getCar().getModel().getCars(), 
+                                        carMake, ;
         OrderLine orderline = new OrderLine(car, order, insurance, location, equipment, rentalPeriodStart, rentalPeriodEnd)
         List<OrderLine> orderlines = new ArrayList();
         orderlines.add(orderline);

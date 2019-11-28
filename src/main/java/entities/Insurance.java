@@ -25,6 +25,11 @@ public class Insurance implements Serializable{
     @OneToOne
     private OrderLine orderline;
 
+    public Insurance(boolean insurance, int price) {
+        this.insurance = insurance;
+        this.price = price;
+    }
+
     public Insurance(boolean insurance, int price, OrderLine orderline) {
         this.insurance = insurance;
         this.price = price;

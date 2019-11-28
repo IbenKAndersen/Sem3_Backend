@@ -39,7 +39,8 @@ public class OrderLine implements Serializable {
         cascade = CascadeType.PERSIST,
         orphanRemoval = true
     )
-    private List<Equipment> equipment;
+    private List<Equipment> equipmentList;
+    private Equipment equipment;
     
     @Column(name = "rental_period_start")
     private String rentalPeriodStart;
@@ -49,17 +50,24 @@ public class OrderLine implements Serializable {
     public OrderLine() {
     }
 
+    public OrderLine(Car car, Insurance insurance, Location location, List<Equipment> equipmentList, String rentalPeriodStart, String rentalPeriodEnd) {
+        this.car = car;
+        this.insurance = insurance;
+        this.location = location;
+        this.equipmentList = equipmentList;
+        this.rentalPeriodStart = rentalPeriodStart;
+        this.rentalPeriodEnd = rentalPeriodEnd;
+    }
+
     public OrderLine(Car car, Order order, Insurance insurance, Location location, List<Equipment> equipment, String rentalPeriodStart, String rentalPeriodEnd) {
         this.car = car;
         this.order = order;
         this.insurance = insurance;
         this.location = location;
-        this.equipment = equipment;
+        this.equipmentList = equipment;
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
     }
-
-
 
     public int getId() {
         return id;
@@ -101,12 +109,12 @@ public class OrderLine implements Serializable {
         this.location = location;
     }
 
-    public List<Equipment> getEquipment() {
-        return equipment;
+    public List<Equipment> getEquipmentList() {
+        return equipmentList;
     }
 
-    public void setEquipment(List<Equipment> equipment) {
-        this.equipment = equipment;
+    public void setEquipmentList(List<Equipment> equipmentList) {
+        this.equipmentList = equipmentList;
     }
 
     public String getRentalPeriodStart() {
@@ -123,6 +131,14 @@ public class OrderLine implements Serializable {
 
     public void setRentalPeriodEnd(String rentalPeriodEnd) {
         this.rentalPeriodEnd = rentalPeriodEnd;
+    }
+
+    public Equipment getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
     }
 
     

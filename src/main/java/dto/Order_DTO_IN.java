@@ -19,7 +19,7 @@ public class Order_DTO_IN {
     private int id;
     private User_DTO_IN user;
     private List<Orderline_DTO_IN> ol;
-    private Order_DTO_IN orderline;
+    private Orderline_DTO_IN orderline;
     private Date d;
 
     public Order_DTO_IN() {
@@ -69,11 +69,11 @@ public class Order_DTO_IN {
         this.d = d;
     }
 
-    public Order_DTO_IN getOrderline() {
+    public Orderline_DTO_IN getOrderline() {
         return orderline;
     }
 
-    public void setOrderline(Order_DTO_IN orderline) {
+    public void setOrderline(Orderline_DTO_IN orderline) {
         this.orderline = orderline;
     }
     

@@ -25,8 +25,7 @@ public class Equipment implements Serializable {
     public Equipment() {
     }
 
-    public Equipment(int id, String name, int price) {
-        this.id = id;
+    public Equipment(String name, int price) {
         this.name = name;
         this.price = price;
     }
