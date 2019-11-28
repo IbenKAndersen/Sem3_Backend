@@ -148,7 +148,7 @@ public class SetupTestUsers {
         orderline1.setCar(car1);
         orderline1.setLocation(location1);
         orderline1.setInsurance(insurance1);
-        orderline1.setEquipment(eqPack);
+        orderline1.setEquipmentList(eqPack);
         orderline1.setRentalPeriodStart("2019-11-21T23:00:00.000Z");
         orderline1.setRentalPeriodEnd("2019-11-30T22:59:59.999Z");
 
@@ -156,7 +156,7 @@ public class SetupTestUsers {
         orderline2.setCar(car2);
         orderline2.setLocation(location2);
         orderline2.setInsurance(insurance2);
-        orderline2.setEquipment(eqPack);
+        orderline2.setEquipmentList(eqPack);
         orderline2.setRentalPeriodStart("2019-11-19T23:00:00.000Z");
         orderline2.setRentalPeriodEnd("2019-11-21T22:59:59.999Z");
 
@@ -164,7 +164,7 @@ public class SetupTestUsers {
         orderline3.setCar(car3);
         orderline3.setLocation(location3);
         orderline3.setInsurance(insurance3);
-        orderline3.setEquipment(eqPack);
+        orderline3.setEquipmentList(eqPack);
         orderline3.setRentalPeriodStart("2019-11-01T23:00:00.000Z");
         orderline3.setRentalPeriodEnd("2019-11-04T22:59:59.999Z");
 

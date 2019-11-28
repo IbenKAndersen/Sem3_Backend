@@ -32,8 +32,8 @@ public class Orderline_DTO_IN {
         this.order = new Order_DTO_IN(ol.getOrder());
         this.insurance = new Insurance_DTO_IN(ol.getInsurance());
         this.location = new Location_DTO_IN(ol.getLocation());
-        if (ol.getEquipment() != null) {
-            ol.getEquipment().forEach((equipment) -> {
+        if (ol.getEquipmentList() != null) {
+            ol.getEquipmentList().forEach((equipment) -> {
                 this.equipment.add(new Equipment_DTO_IN(equipment));
             });
         }

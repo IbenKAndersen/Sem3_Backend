@@ -57,36 +57,30 @@ public class OrderFacade {
         }
     }
 
-    public Order addOrder1(Order order){
-    EntityManager em = getEntityManager();
-    
-    User user = new User(order.getUser().getUserName(),order.getUser().getUserPass());
-    CarMake carMake = new CarMake(order.getOrderline().getCar().getCarMake().getName(), 
-                                  order.getOrderline().getCar().getCarMake().getCars_by_make(), 
-                                  order.getOrderline().getCar().getCarMake().getModels_of_make());
-    CarModel carModel = new CarModel(order.getOrderline().getCar().getCarModel().getModel_of_car(), 
-                                     carMake, order.getOrderline().getCar().getCarModel().getName());
-    Car car = new Car(carMake, carModel, order.getOrderline().getCar().getCarDetails());
-    Location location = new Location(order.getOrderline().getLocation().getAddress(), order.getOrderline().getLocation().getCoord());
-    Insurance insurance = new Insurance(order.getOrderline().getInsurance().isInsurance(),order.getOrderline().getInsurance().getPrice());
-    Equipment equipment = new Equipment(order.getOrderline(), 0)
-    }
-    public Order_DTO addOrder(Order_DTO_IN newOrder) {
+    public Order addOrder1(Order order) {
         EntityManager em = getEntityManager();
-        User user = new User(newOrder.getUser().getUserName(), newOrder.getUser().getUserPass());
-        CarMake carMake = new CarMake(newOrder.getOrderline().getCar().getMake().getName(),
-                                      newOrder.getOrderline().getCar().getMake().getCars_by_make(),
-                                      newOrder.getOrderline().getCar().getMake().getModels_of_make());
-        CarModel carModel = new CarModel(newOrder.getOrderline().getCar().getModel().getCars(), 
-                                        carMake, ;
-        OrderLine orderline = new OrderLine(car, order, insurance, location, equipment, rentalPeriodStart, rentalPeriodEnd)
-        List<OrderLine> orderlines = new ArrayList();
-        orderlines.add(orderline);
+
+        User user = new User(order.getUser().getUserName(), order.getUser().getUserPass());
+        CarMake carMake = new CarMake(order.getOrderline().getCar().getCarMake().getName(),
+                order.getOrderline().getCar().getCarMake().getCars_by_make(),
+                order.getOrderline().getCar().getCarMake().getModels_of_make());
+        CarModel carModel = new CarModel(order.getOrderline().getCar().getCarModel().getModel_of_car(),
+                carMake, order.getOrderline().getCar().getCarModel().getName());
+        Car car = new Car(carMake, carModel, order.getOrderline().getCar().getCarDetails());
+        Location location = new Location(order.getOrderline().getLocation().getAddress(), order.getOrderline().getLocation().getCoord());
+        Insurance insurance = new Insurance(order.getOrderline().getInsurance().isInsurance(), order.getOrderline().getInsurance().getPrice());
+        Equipment equipment = new Equipment(order.getOrderline().getEquipment().getName(), order.getOrderline().getEquipment().getPrice());
+        List<Equipment> equipmentList = new ArrayList(order.getOrderline().getEquipmentList());
+        equipmentList.add(equipment);
+        OrderLine orderLine = new OrderLine(car, insurance, location, equipmentList, order.getOrderline().getRentalPeriodStart(), order.getOrderline().getRentalPeriodEnd());
+        List<OrderLine> ol = new ArrayList(order.getOl());
+        ol.add(orderLine);
+        Order finalOrder = new Order(user, ol, order.getD());
         try {
             em.getTransaction().begin();
-            em.persist(order);
+            em.persist(finalOrder);
             em.getTransaction().commit();
-            return new Order_DTO(order);
+            return finalOrder;
         } catch (Exception e) {
             em.getTransaction().rollback();
             return null;
