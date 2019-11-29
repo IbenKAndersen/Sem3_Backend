@@ -120,5 +120,11 @@ public class Car implements Serializable {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" + "carId=" + carId + ", carMake=" + carMake + ", carModel=" + carModel + ", carDetails=" + carDetails + ", orderline=" + orderline + ", location=" + location + '}';
+    }
+    
     
 }

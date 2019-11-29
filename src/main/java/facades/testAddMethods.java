@@ -32,15 +32,11 @@ public class testAddMethods {
     }
     
     public static void main(String[] args) {
-            
+
+        //FACADE.fetchCar(1);
         
-        CarMake carMake1 = new CarMake();
-        carMake1.setName("Porche");
-        CarModel carModel1 = new CarModel();
-        carModel1.setMake(carMake1);
-        carModel1.setName("911");
-        Car car = new Car(carMake1, carModel1, "test.....");
-        FACADE.addCar(car);
+        System.out.println(FACADE.getAllCars());
+
         
     }
 }

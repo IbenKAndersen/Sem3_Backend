@@ -43,24 +43,8 @@ public class OrderFacade {
     public OrderFacade() {
     }
 
-    public List<Order_DTO> getAllorders() {
-        EntityManager em = getEntityManager();
-        try {
-            List<Order> orders = em.createNamedQuery("orders.findAll").getResultList();
-            List<Order_DTO> result = new ArrayList();
-            orders.forEach((order) -> {
-                result.add(new Order_DTO(order));
-            });
-            return result;
-        } finally {
-            em.close();
-        }
-    }
-
     public Order addOrder1(Order order) {
         EntityManager em = getEntityManager();
-
-        
         List<OrderLine> orderLines = order.getOl();
         for (OrderLine orderLine : orderLines) {
             OrderLine orderLine1 = new OrderLine(orderLine.getCar(), 
@@ -86,10 +70,8 @@ public class OrderFacade {
         }
         return null;
 
-
     }
-    
-    
+
 //    List<Person> query = em.createNamedQuery("Person.getByName").setParameter("firstName", firstName).getResultList();
 //            List<PersonDTO_OUT> result = new ArrayList();
 //            for (Person person : query) {
@@ -97,26 +79,57 @@ public class OrderFacade {
 //            }
 //            return result;
 //            
-    public Car addCar(Car car) {
-         EntityManager em = getEntityManager();
-         int car_id = car.getCarId();
-         if(car == em.find(Car.class, car_id)){
-             System.out.println("Car already in database");
-         return car;
-         } else {
-                    try {
-                em.getTransaction().begin();
-                em.persist(car);
-                em.getTransaction().commit();
+    public Car fetchCar(int car_id) {
+        EntityManager em = getEntityManager();
+        Car car = (Car) em.find(Car.class, car_id);
+        try {
+            if (car.getCarId() == car_id) {
+                System.out.println("Fetching car from database...");
+                System.out.println(car.toString());
                 return car;
-            } catch (Exception e) {
-                em.getTransaction().rollback();
-                return null;
-            } finally {
-                em.close();
+
+            } else {
+                System.out.println("Car doesn't exist in database...");
             }
-         }
+            return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
+
+    public Order fetchOrder(int order_id) {
+        EntityManager em = getEntityManager();
+        Order order = (Order) em.find(Order.class, order_id);
+        try {
+            if (order.getId() == order_id) {
+                System.out.println("Fetching order from database...");
+                System.out.println(order.toString());
+                return order;
+
+            } else {
+                System.out.println("Order doesn't exist in database...");
+            }
+            return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+//    public void addCar(Car car) {
+//        EntityManager em = getEntityManager();
+//
+//        try {   
+//            if(car.getCarModel().getName() = em.find(Car.class, car) ){
+//                
+//            }
+//            
+//
+//        } catch(Exception e)  {
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     public boolean cancelOrder(int orderId) {
         EntityManager em = getEntityManager();
@@ -136,6 +149,16 @@ public class OrderFacade {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Order> query = em.createQuery("SELECT o FROM Order o", Order.class);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Car> getAllCars() {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery<Car> query = em.createQuery("SELECT c FROM Car c", Car.class);
             return query.getResultList();
         } finally {
             em.close();
