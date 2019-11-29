@@ -6,11 +6,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
@@ -32,9 +35,13 @@ public class Location implements Serializable {
     @Column(name = "coordinates")
     private String coord;
     
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name = "location_id")
+    private OrderLine orderline;
+    
         @OneToMany(
         mappedBy = "location",
-        cascade = CascadeType.PERSIST,
+        cascade = CascadeType.ALL,
         orphanRemoval = true
     )
     private List<Car> cars_on_location = new ArrayList();
@@ -74,5 +81,15 @@ public class Location implements Serializable {
     public int getId() {
         return id;
     }
+
+    public OrderLine getOrderline() {
+        return orderline;
+    }
+
+    public void setOrderline(OrderLine orderline) {
+        this.orderline = orderline;
+    }
+    
+    
 
 }

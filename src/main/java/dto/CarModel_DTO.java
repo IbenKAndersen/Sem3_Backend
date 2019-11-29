@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class CarModel_DTO {
 
-    private int id;
     private List<Car_DTO> cars;
     private CarMake_DTO make;
     private String name;
@@ -23,7 +22,6 @@ public class CarModel_DTO {
     }
 
     public CarModel_DTO(CarModel model) {
-        this.id = model.getId();
         if (model.getModel_of_car() != null) {
             model.getModel_of_car().forEach((carsOfModel) -> {
                 this.cars.add(new Car_DTO(carsOfModel));
@@ -33,13 +31,6 @@ public class CarModel_DTO {
         this.name = model.getName();
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public List<Car_DTO> getCars() {
         return cars;

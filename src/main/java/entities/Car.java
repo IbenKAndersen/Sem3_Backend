@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -36,11 +37,11 @@ public class Car implements Serializable {
     @Column(name = "car_id", length = 255)
     private int carId;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "cars_by_make")
     private CarMake carMake;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "model_of_car")
     private CarModel carModel;
     
@@ -49,7 +50,8 @@ public class Car implements Serializable {
     @Column(name = "car_details", length = 255)
     private String carDetails;
     
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY)
+    @PrimaryKeyJoinColumn(name = "car_id")
     private OrderLine orderline;
     
     @ManyToOne
