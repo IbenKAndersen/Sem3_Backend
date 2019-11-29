@@ -3,9 +3,12 @@ package entities;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +25,9 @@ public class Equipment implements Serializable {
     @Column(name = "price")
     private int price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private OrderLine orderline;
+    
     public Equipment() {
     }
 
@@ -53,6 +59,16 @@ public class Equipment implements Serializable {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public OrderLine getOrderline() {
+        return orderline;
+    }
+
+    public void setOrderline(OrderLine orderline) {
+        this.orderline = orderline;
+    }
+    
+    
 
     @Override
     public String toString() {

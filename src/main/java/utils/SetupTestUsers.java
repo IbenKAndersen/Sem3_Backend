@@ -139,6 +139,7 @@ public class SetupTestUsers {
         eq1.setName("GPS");
         eq1.setPrice(100);
         
+        
         //List of Equipment
         List<Equipment> eqPack = new  ArrayList();
         eqPack.add(eq1);
@@ -151,6 +152,7 @@ public class SetupTestUsers {
         orderline1.setEquipmentList(eqPack);
         orderline1.setRentalPeriodStart("2019-11-21T23:00:00.000Z");
         orderline1.setRentalPeriodEnd("2019-11-30T22:59:59.999Z");
+        eq1.setOrderline(orderline1);
 
         OrderLine orderline2 = new OrderLine();
         orderline2.setCar(car2);
@@ -159,6 +161,7 @@ public class SetupTestUsers {
         orderline2.setEquipmentList(eqPack);
         orderline2.setRentalPeriodStart("2019-11-19T23:00:00.000Z");
         orderline2.setRentalPeriodEnd("2019-11-21T22:59:59.999Z");
+        eq1.setOrderline(orderline2);
 
         OrderLine orderline3 = new OrderLine();
         orderline3.setCar(car3);
@@ -167,13 +170,16 @@ public class SetupTestUsers {
         orderline3.setEquipmentList(eqPack);
         orderline3.setRentalPeriodStart("2019-11-01T23:00:00.000Z");
         orderline3.setRentalPeriodEnd("2019-11-04T22:59:59.999Z");
+        eq1.setOrderline(orderline3);
 
         List<OrderLine> orderlines = new ArrayList();
         orderlines.add(orderline1);
         orderlines.add(orderline2);
         orderlines.add(orderline3);
+        
         // Create Current date
         Date d = new Date();
+        
         //Create Booking Entity
         Order order1 = new Order();
         order1.setOl(orderlines);

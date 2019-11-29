@@ -27,14 +27,8 @@ public class Order implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
     
-    @JoinTable(name = "orderlines_on_order", 
-            joinColumns = {@JoinColumn(name = "order_id", referencedColumnName = "order_id")}, 
-            inverseJoinColumns = {@JoinColumn(name = "orderline_id", referencedColumnName = "orderline_id")})
-    @OneToMany (cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderLine> ol;
-    
-    @OneToOne
-    private OrderLine orderline;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date d;
@@ -80,14 +74,6 @@ public class Order implements Serializable {
         this.d = d;
     }
 
-    public OrderLine getOrderline() {
-        return orderline;
-    }
-
-    public void setOrderline(OrderLine orderline) {
-        this.orderline = orderline;
-    }
-    
     
     
 }

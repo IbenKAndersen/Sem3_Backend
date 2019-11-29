@@ -60,33 +60,62 @@ public class OrderFacade {
     public Order addOrder1(Order order) {
         EntityManager em = getEntityManager();
 
-        User user = new User(order.getUser().getUserName(), order.getUser().getUserPass());
-        CarMake carMake = new CarMake(order.getOrderline().getCar().getCarMake().getName(),
-                order.getOrderline().getCar().getCarMake().getCars_by_make(),
-                order.getOrderline().getCar().getCarMake().getModels_of_make());
-        CarModel carModel = new CarModel(order.getOrderline().getCar().getCarModel().getModel_of_car(),
-                carMake, order.getOrderline().getCar().getCarModel().getName());
-        Car car = new Car(carMake, carModel, order.getOrderline().getCar().getCarDetails());
-        Location location = new Location(order.getOrderline().getLocation().getAddress(), order.getOrderline().getLocation().getCoord());
-        Insurance insurance = new Insurance(order.getOrderline().getInsurance().isInsurance(), order.getOrderline().getInsurance().getPrice());
-        Equipment equipment = new Equipment(order.getOrderline().getEquipment().getName(), order.getOrderline().getEquipment().getPrice());
-        List<Equipment> equipmentList = new ArrayList(order.getOrderline().getEquipmentList());
-        equipmentList.add(equipment);
-        OrderLine orderLine = new OrderLine(car, insurance, location, equipmentList, order.getOrderline().getRentalPeriodStart(), order.getOrderline().getRentalPeriodEnd());
-        List<OrderLine> ol = new ArrayList(order.getOl());
-        ol.add(orderLine);
-        Order finalOrder = new Order(user, ol, order.getD());
-        try {
-            em.getTransaction().begin();
-            em.persist(finalOrder);
-            em.getTransaction().commit();
-            return finalOrder;
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            return null;
-        } finally {
-            em.close();
+        
+        List<OrderLine> orderslines = order.getOl();
+        for (OrderLine ordersline : orderslines) {
+            OrderLine orderLine = new OrderLine(ordersline.getCar(), 
+                                                ordersline.getInsurance(), 
+                                                ordersline.getLocation(), 
+                                                ordersline.getEquipmentList(), 
+                                                ordersline.getRentalPeriodStart(), 
+                                                ordersline.getRentalPeriodEnd());
+            orderslines.add(orderLine);
+            Order finalOrder = new Order(order.getUser(), orderslines, order.getD());
+            try {
+                em.getTransaction().begin();
+                em.persist(orderslines);
+                em.persist(finalOrder);
+                em.getTransaction().commit();
+                return finalOrder;
+            } catch (Exception e) {
+                em.getTransaction().rollback();
+                return null;
+            } finally {
+                em.close();
+            }
         }
+        return null;
+
+
+    }
+    
+    
+//    List<Person> query = em.createNamedQuery("Person.getByName").setParameter("firstName", firstName).getResultList();
+//            List<PersonDTO_OUT> result = new ArrayList();
+//            for (Person person : query) {
+//                result.add(new PersonDTO_OUT(person));
+//            }
+//            return result;
+//            
+    public Car addCar(Car car) {
+         EntityManager em = getEntityManager();
+         int car_id = car.getCarId();
+         if(car == em.find(Car.class, car_id)){
+             System.out.println("Car already in database");
+         return car;
+         } else {
+                    try {
+                em.getTransaction().begin();
+                em.persist(car);
+                em.getTransaction().commit();
+                return car;
+            } catch (Exception e) {
+                em.getTransaction().rollback();
+                return null;
+            } finally {
+                em.close();
+            }
+         }
     }
 
     public boolean cancelOrder(int orderId) {
@@ -102,8 +131,8 @@ public class OrderFacade {
         }
         return true;
     }
-    
-        public List<Order> getAllOrders() {
+
+    public List<Order> getAllOrders() {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Order> query = em.createQuery("SELECT o FROM Order o", Order.class);

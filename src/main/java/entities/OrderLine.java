@@ -3,6 +3,7 @@ package entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import org.eclipse.persistence.jpa.config.Cascade;
 
 @Entity
 @Table(name = "orderLines")
@@ -18,8 +19,7 @@ public class OrderLine implements Serializable {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @ManyToOne (cascade = CascadeType.PERSIST)
-    @OneToOne(mappedBy = "orderline")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
             
     @OneToOne(fetch = FetchType.LAZY, 
@@ -27,20 +27,12 @@ public class OrderLine implements Serializable {
     @JoinColumn(name = "insurance_on_orderline")
     private Insurance insurance;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
+
     private Location location;
-    @JoinTable(name = "equipment_on_orderline",
-            joinColumns = {
-                @JoinColumn(name = "orderline_id", referencedColumnName = "orderline_id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "equipment_id", referencedColumnName = "equipment_id")})
-    @OneToMany(
-        
-        cascade = CascadeType.PERSIST,
-        orphanRemoval = true
-    )
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderline", cascade = CascadeType.PERSIST)
     private List<Equipment> equipmentList;
-    private Equipment equipment;
     
     @Column(name = "rental_period_start")
     private String rentalPeriodStart;
@@ -59,15 +51,6 @@ public class OrderLine implements Serializable {
         this.rentalPeriodEnd = rentalPeriodEnd;
     }
 
-    public OrderLine(Car car, Order order, Insurance insurance, Location location, List<Equipment> equipment, String rentalPeriodStart, String rentalPeriodEnd) {
-        this.car = car;
-        this.order = order;
-        this.insurance = insurance;
-        this.location = location;
-        this.equipmentList = equipment;
-        this.rentalPeriodStart = rentalPeriodStart;
-        this.rentalPeriodEnd = rentalPeriodEnd;
-    }
 
     public int getId() {
         return id;
@@ -132,17 +115,5 @@ public class OrderLine implements Serializable {
     public void setRentalPeriodEnd(String rentalPeriodEnd) {
         this.rentalPeriodEnd = rentalPeriodEnd;
     }
-
-    public Equipment getEquipment() {
-        return equipment;
-    }
-
-    public void setEquipment(Equipment equipment) {
-        this.equipment = equipment;
-    }
-
-    
-    
-    
 
 }
