@@ -15,30 +15,31 @@ public class OrderLine implements Serializable {
     @Column(name = "orderline_id")
     private int id;
 
-        @OneToOne(mappedBy = "orderline", cascade = CascadeType.ALL,
-              fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "car_on_orderline")
     private Car car;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "order_id")
     private Order order;
-            
-    @OneToOne(fetch = FetchType.LAZY, 
+
+    @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
     @JoinColumn(name = "insurance_on_orderline")
     private Insurance insurance;
 
-            @OneToOne(mappedBy = "orderline", cascade = CascadeType.ALL,
-              fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "orderline", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
     private Location location;
-    
-        @OneToMany(
+
+    @OneToMany(
             mappedBy = "orderline",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Equipment> equipmentList  = new ArrayList<>();
-    
+    private List<Equipment> equipmentList = new ArrayList<>();
+
     @Column(name = "rental_period_start")
     private String rentalPeriodStart;
     @Column(name = "rental_period_end")
@@ -55,7 +56,6 @@ public class OrderLine implements Serializable {
         this.rentalPeriodStart = rentalPeriodStart;
         this.rentalPeriodEnd = rentalPeriodEnd;
     }
-
 
     public int getId() {
         return id;
