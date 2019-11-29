@@ -36,7 +36,7 @@ public class Car implements Serializable {
     @Column(name = "car_id", length = 255)
     private int carId;
     
-   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "cars_by_make")
     private CarMake carMake;
     

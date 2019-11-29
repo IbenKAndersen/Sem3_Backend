@@ -1,6 +1,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -27,8 +28,12 @@ public class Order implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.PERSIST)
-    private List<OrderLine> ol;
+        @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<OrderLine> ol  = new ArrayList<>();
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date d;

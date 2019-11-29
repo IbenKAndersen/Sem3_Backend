@@ -61,19 +61,19 @@ public class OrderFacade {
         EntityManager em = getEntityManager();
 
         
-        List<OrderLine> orderslines = order.getOl();
-        for (OrderLine ordersline : orderslines) {
-            OrderLine orderLine = new OrderLine(ordersline.getCar(), 
-                                                ordersline.getInsurance(), 
-                                                ordersline.getLocation(), 
-                                                ordersline.getEquipmentList(), 
-                                                ordersline.getRentalPeriodStart(), 
-                                                ordersline.getRentalPeriodEnd());
-            orderslines.add(orderLine);
-            Order finalOrder = new Order(order.getUser(), orderslines, order.getD());
+        List<OrderLine> orderLines = order.getOl();
+        for (OrderLine orderLine : orderLines) {
+            OrderLine orderLine1 = new OrderLine(orderLine.getCar(), 
+                                                orderLine.getInsurance(), 
+                                                orderLine.getLocation(), 
+                                                orderLine.getEquipmentList(), 
+                                                orderLine.getRentalPeriodStart(), 
+                                                orderLine.getRentalPeriodEnd());
+            orderLines.add(orderLine1);
+            Order finalOrder = new Order(order.getUser(), orderLines, order.getD());
             try {
                 em.getTransaction().begin();
-                em.persist(orderslines);
+                em.persist(orderLines);
                 em.persist(finalOrder);
                 em.getTransaction().commit();
                 return finalOrder;

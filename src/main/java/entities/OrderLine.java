@@ -2,8 +2,8 @@ package entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.persistence.jpa.config.Cascade;
 
 @Entity
 @Table(name = "orderLines")
@@ -19,7 +19,8 @@ public class OrderLine implements Serializable {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
             
     @OneToOne(fetch = FetchType.LAZY, 
@@ -28,11 +29,14 @@ public class OrderLine implements Serializable {
     private Insurance insurance;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-
     private Location location;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderline", cascade = CascadeType.PERSIST)
-    private List<Equipment> equipmentList;
+        @OneToMany(
+            mappedBy = "orderline",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Equipment> equipmentList  = new ArrayList<>();
     
     @Column(name = "rental_period_start")
     private String rentalPeriodStart;

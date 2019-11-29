@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,9 +31,9 @@ public class CarModel implements Serializable {
         @OneToMany(mappedBy = "carModel",
         cascade = CascadeType.ALL,
         orphanRemoval = true)
-    private List<Car> model_of_car;
+    private List<Car> model_of_car = new ArrayList();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "make_of_model")
     private CarMake make;
 
