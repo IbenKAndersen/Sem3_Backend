@@ -10,6 +10,9 @@
     <class>entities.CarModel</class>
     <class>entities.RenameMe</class>
     <class>entities.Order</class>
+    <class>entities.Location</class>
+    <class>entities.Equipment</class>
+    <class>entities.Insurance</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <!-- DO NOT remove the line below. It's not set by the  entityUtils.EMF_Creator -->
