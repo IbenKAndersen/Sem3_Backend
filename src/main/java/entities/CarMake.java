@@ -27,13 +27,9 @@ public class CarMake implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "make_id")
-    private int id;
-    
+    @Column(name = "make_name")
     private String name;
     
-
     @OneToMany(
         mappedBy = "carMake",
         cascade = CascadeType.ALL,
@@ -60,16 +56,7 @@ public class CarMake implements Serializable {
         this.cars_by_make = cars_by_make;
         this.models_of_make = models_of_make;
     }
-    
-    
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -95,31 +82,4 @@ public class CarMake implements Serializable {
         this.models_of_make = models_of_make;
     }
 
-    
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CarMake)) {
-            return false;
-        }
-        CarMake other = (CarMake) object;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "entities.CarMake[ id=" + id + " ]";
-    }
-    
 }

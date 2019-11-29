@@ -11,7 +11,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,9 +27,9 @@ import javax.persistence.Table;
 @Table(name = "car_model")
 public class CarModel implements Serializable {
 
-        @OneToMany(mappedBy = "carModel",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
+    @OneToMany(mappedBy = "carModel",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<Car> model_of_car = new ArrayList();
 
     @ManyToOne
@@ -39,11 +38,7 @@ public class CarModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "model_id")
-    private int id;
-
-    @Column(name = "name")
+    @Column(name = "model_name")
     private String name;
 
     public CarModel() {
@@ -53,14 +48,6 @@ public class CarModel implements Serializable {
         this.model_of_car = model_of_car;
         this.make = make;
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -85,31 +72,6 @@ public class CarModel implements Serializable {
 
     public void setMake(CarMake make) {
         this.make = make;
-    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CarModel)) {
-            return false;
-        }
-        CarModel other = (CarModel) object;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "entities.CarModel[ id=" + id + " ]";
     }
 
 }

@@ -40,7 +40,7 @@ public class Car implements Serializable {
     @JoinColumn(name = "cars_by_make")
     private CarMake carMake;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "model_of_car")
     private CarModel carModel;
     
@@ -52,7 +52,7 @@ public class Car implements Serializable {
     @OneToOne(cascade = CascadeType.PERSIST)
     private OrderLine orderline;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "car_On_Location")
     private Location location;
 
