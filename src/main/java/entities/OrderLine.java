@@ -15,6 +15,7 @@ public class OrderLine implements Serializable {
     @Column(name = "orderline_id")
     private int id;
 
+    
     @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
     @JoinColumn(name = "car_on_orderline")
@@ -24,6 +25,7 @@ public class OrderLine implements Serializable {
     @JoinColumn(name = "order_id")
     private Order order;
 
+    
     @OneToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
     @JoinColumn(name = "insurance_on_orderline")

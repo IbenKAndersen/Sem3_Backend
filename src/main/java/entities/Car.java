@@ -50,10 +50,6 @@ public class Car implements Serializable {
     @Column(name = "car_details", length = 255)
     private String carDetails;
     
-    @OneToOne
-    @JoinColumn(name = "orderline_id")
-    private OrderLine orderline;
-    
     @ManyToOne
     @JoinColumn(name = "car_On_Location")
     private Location location;
@@ -65,7 +61,6 @@ public class Car implements Serializable {
         this.carMake = carMake;
         this.carModel = carModel;
         this.carDetails = carDetails;
-        this.orderline = orderline;
     }
 
     public Car(CarMake carMake, CarModel carModel, String carDetails) {
@@ -89,14 +84,6 @@ public class Car implements Serializable {
 
     public void setCarDetails(String carDetails) {
         this.carDetails = carDetails;
-    }
-
-    public OrderLine getOrderline() {
-        return orderline;
-    }
-
-    public void setOrderline(OrderLine orderline) {
-        this.orderline = orderline;
     }
 
     public CarMake getCarMake() {
@@ -123,10 +110,5 @@ public class Car implements Serializable {
         this.location = location;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" + "carId=" + carId + ", carMake=" + carMake + ", carModel=" + carModel + ", carDetails=" + carDetails + ", orderline=" + orderline + ", location=" + location + '}';
-    }
-    
     
 }
