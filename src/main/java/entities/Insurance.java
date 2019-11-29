@@ -21,9 +21,6 @@ public class Insurance implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @OneToOne
-    private OrderLine orderline;
 
     public Insurance(boolean insurance, int price) {
         this.insurance = insurance;
@@ -33,7 +30,7 @@ public class Insurance implements Serializable{
     public Insurance(boolean insurance, int price, OrderLine orderline) {
         this.insurance = insurance;
         this.price = price;
-        this.orderline = orderline;
+
     }
 
     public Insurance() {
@@ -63,13 +60,5 @@ public class Insurance implements Serializable{
         this.id = id;
     }
 
-    public OrderLine getOrderline() {
-        return orderline;
-    }
-
-    public void setOrderline(OrderLine orderline) {
-        this.orderline = orderline;
-    }
-    
     
 }
