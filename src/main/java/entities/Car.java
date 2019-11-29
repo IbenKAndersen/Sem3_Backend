@@ -50,8 +50,8 @@ public class Car implements Serializable {
     @Column(name = "car_details", length = 255)
     private String carDetails;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @PrimaryKeyJoinColumn(name = "car_id")
+    @OneToOne
+    @JoinColumn(name = "orderline_id")
     private OrderLine orderline;
     
     @ManyToOne

@@ -129,10 +129,6 @@ public class SetupTestUsers {
         Insurance insurance2 = new Insurance();
         insurance2.setInsurance(false);
         insurance2.setPrice(500);
-        
-        Insurance insurance3 = new Insurance();
-        insurance3.setInsurance(false);
-        insurance3.setPrice(500);
 
         // Create Equipment Entity
         Equipment eq1 = new Equipment();
@@ -166,7 +162,7 @@ public class SetupTestUsers {
         OrderLine orderline3 = new OrderLine();
         orderline3.setCar(car3);
         orderline3.setLocation(location3);
-        orderline3.setInsurance(insurance3);
+        orderline3.setInsurance(insurance1);
         orderline3.setEquipmentList(eqPack);
         orderline3.setRentalPeriodStart("2019-11-01T23:00:00.000Z");
         orderline3.setRentalPeriodEnd("2019-11-04T22:59:59.999Z");
@@ -182,6 +178,9 @@ public class SetupTestUsers {
         
         //Create Booking Entity
         Order order1 = new Order();
+        orderline1.setOrder(order1);
+        orderline2.setOrder(order1);
+        orderline3.setOrder(order1);
         order1.setOl(orderlines);
         order1.setUser(user);
         order1.setD(d);
