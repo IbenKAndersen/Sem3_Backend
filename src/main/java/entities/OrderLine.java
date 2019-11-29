@@ -19,7 +19,7 @@ public class OrderLine implements Serializable {
               fetch = FetchType.LAZY, optional = false)
     private Car car;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "order_id")
     private Order order;
             
