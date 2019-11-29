@@ -25,7 +25,7 @@ public class Equipment implements Serializable {
     @Column(name = "price")
     private int price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "orderline_id")
     private OrderLine orderline;
     
