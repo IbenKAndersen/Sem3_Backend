@@ -18,7 +18,7 @@ import utils.EMF_Creator;
  */
 public class testAddMethods {
     
-    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
+    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST, EMF_Creator.Strategy.NONE);
     private static final OrderFacade FACADE =  OrderFacade.getOrderFacade(EMF);
     private static EntityManagerFactory emf;
     private static OrderFacade instance;
@@ -32,10 +32,32 @@ public class testAddMethods {
     }
     
     public static void main(String[] args) {
+        
+        EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST, EMF_Creator.Strategy.DROP_AND_CREATE);
+        EntityManager em = emf.createEntityManager();
 
-        //FACADE.fetchCar(1);
+        System.out.println(FACADE.fetchCar(1));
         
         System.out.println(FACADE.getAllCars());
+        
+        CarMake carMake1 = new CarMake();
+        carMake1.setName("Dodge");
+        CarModel carModel1 = new CarModel();
+        carModel1.setMake(carMake1);
+        carModel1.setName("Gallant");
+        CarModel carModel2 = new CarModel();
+        carModel2.setMake(carMake1);
+        carModel2.setName("Gallante");
+        Car car1 = new Car();
+        car1.setCarMake(carMake1);
+        car1.setCarModel(carModel1);
+        car1.setCarDetails("Some details...");
+        Car car2 = new Car();
+        car2.setCarMake(carMake1);
+        car2.setCarModel(carModel1);
+        car2.setCarDetails("Some details...");
+        FACADE.addCar(car1);
+        FACADE.addCar(car2);
 
         
     }

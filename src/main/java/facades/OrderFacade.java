@@ -117,19 +117,22 @@ public class OrderFacade {
         }
     }
 
-//    public void addCar(Car car) {
-//        EntityManager em = getEntityManager();
-//
-//        try {   
-//            if(car.getCarModel().getName() = em.find(Car.class, car) ){
-//                
-//            }
-//            
-//
-//        } catch(Exception e)  {
-//            System.out.println(e.getMessage());
-//        }
-//    }
+    public void addCar(Car car) {
+        EntityManager em = getEntityManager();
+        String carMakeName = car.getCarMake().getName();
+        Car car1 = em.find(Car.class, car.getCarMake().getName());
+        if(carMakeName == car1.getCarMake().getName()) {
+        car.setCarMake(car1.getCarMake());
+        }
+        try {   
+        em.getTransaction().begin();
+        em.persist(car);
+        em.getTransaction().commit();
+        em.close();
+        } catch(Exception e)  {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public boolean cancelOrder(int orderId) {
         EntityManager em = getEntityManager();
@@ -159,6 +162,7 @@ public class OrderFacade {
         EntityManager em = getEntityManager();
         try {
             TypedQuery<Car> query = em.createQuery("SELECT c FROM Car c", Car.class);
+            System.out.println("Fetching list of cars from database...");
             return query.getResultList();
         } finally {
             em.close();
