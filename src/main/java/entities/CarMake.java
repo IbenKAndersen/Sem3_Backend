@@ -27,6 +27,11 @@ public class CarMake implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "make_id")
+    private int id;
+    
+    
     @Column(name = "make_name")
     private String name;
     
@@ -37,10 +42,10 @@ public class CarMake implements Serializable {
     )
     private List<Car> cars_by_make = new ArrayList();
     
-    @OneToMany(mappedBy = "make",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
-    private List<CarModel> models_of_make = new ArrayList();
+//    @OneToMany(mappedBy = "make",
+//        cascade = CascadeType.ALL,
+//        orphanRemoval = true)
+//    private List<CarModel> models_of_make = new ArrayList();
     
 
     public CarMake() {
@@ -51,12 +56,18 @@ public class CarMake implements Serializable {
         this.cars_by_make = cars_by_make;
     }
 
-    public CarMake(String name, List<Car> cars_by_make, List<CarModel> models_of_make) {
-        this.name = name;
-        this.cars_by_make = cars_by_make;
-        this.models_of_make = models_of_make;
+//    public CarMake(String name, List<Car> cars_by_make, List<CarModel> models_of_make) {
+//        this.name = name;
+//        this.cars_by_make = cars_by_make;
+//    }
+
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -73,13 +84,13 @@ public class CarMake implements Serializable {
     public void setCars_by_make(List<Car> cars_by_make) {
         this.cars_by_make = cars_by_make;
     }
-
-    public List<CarModel> getModels_of_make() {
-        return models_of_make;
-    }
-
-    public void setModels_of_make(List<CarModel> models_of_make) {
-        this.models_of_make = models_of_make;
-    }
+//
+//    public List<CarModel> getModels_of_make() {
+//        return models_of_make;
+//    }
+//
+//    public void setModels_of_make(List<CarModel> models_of_make) {
+//        this.models_of_make = models_of_make;
+//    }
 
 }

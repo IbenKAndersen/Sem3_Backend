@@ -17,7 +17,7 @@ public class CarMake_DTO_IN {
 
     private String name;
     private List<Car_DTO_IN> cars_by_make;
-    private List<CarModel_DTO_IN> models_of_make;
+//    private List<CarModel_DTO_IN> models_of_make;
 
     public CarMake_DTO_IN() {
     }
@@ -30,11 +30,11 @@ public class CarMake_DTO_IN {
                 this.cars_by_make.add(new Car_DTO_IN(carsByMake));
             });
         }
-        if (make.getModels_of_make() != null) {
-            make.getModels_of_make().forEach((modelByMake) -> {
-                this.models_of_make.add(new CarModel_DTO_IN(modelByMake));
-            });
-        }
+//        if (make.getModels_of_make() != null) {
+//            make.getModels_of_make().forEach((modelByMake) -> {
+//                this.models_of_make.add(new CarModel_DTO_IN(modelByMake));
+//            });
+//        }
     }
 
 
@@ -54,12 +54,12 @@ public class CarMake_DTO_IN {
         this.cars_by_make = cars_by_make;
     }
 
-    public List<CarModel_DTO_IN> getModels_of_make() {
-        return models_of_make;
-    }
-
-    public void setModels_of_make(List<CarModel_DTO_IN> models_of_make) {
-        this.models_of_make = models_of_make;
-    }
+//    public List<CarModel_DTO_IN> getModels_of_make() {
+//        return models_of_make;
+//    }
+//
+//    public void setModels_of_make(List<CarModel_DTO_IN> models_of_make) {
+//        this.models_of_make = models_of_make;
+//    }
 
 }

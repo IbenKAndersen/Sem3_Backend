@@ -24,7 +24,7 @@ public class SetupTestUsers {
 
     public static void main(String[] args) {
 
-        EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.TEST, EMF_Creator.Strategy.DROP_AND_CREATE);
+        EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.DROP_AND_CREATE);
         EntityManager em = emf.createEntityManager();
 
         User user = new User("user", "test1");
@@ -65,13 +65,13 @@ public class SetupTestUsers {
 
         //Create Car Model Entities
         CarModel carModel1 = new CarModel();
-        carModel1.setMake(carMake1);
+//        carModel1.setMake(carMake1);
         carModel1.setName("911");
         CarModel carModel2 = new CarModel();
-        carModel2.setMake(carMake2);
+//        carModel2.setMake(carMake2);
         carModel2.setName("Focus");
         CarModel carModel3 = new CarModel();
-        carModel3.setMake(carMake3);
+//        carModel3.setMake(carMake3);
         carModel3.setName("Civic");
 
         //Create Cars Entities

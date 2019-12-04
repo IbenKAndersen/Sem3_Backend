@@ -47,20 +47,14 @@ public class OrderFacade {
         EntityManager em = getEntityManager();
         List<OrderLine> orderLines = order.getOl();
         for (OrderLine orderLine : orderLines) {
-            OrderLine orderLine1 = new OrderLine(orderLine.getCar(), 
-                                                orderLine.getInsurance(), 
-                                                orderLine.getLocation(), 
-                                                orderLine.getEquipmentList(), 
-                                                orderLine.getRentalPeriodStart(), 
-                                                orderLine.getRentalPeriodEnd());
-            orderLines.add(orderLine1);
-            Order finalOrder = new Order(order.getUser(), orderLines, order.getD());
+            
+        }
             try {
                 em.getTransaction().begin();
                 em.persist(orderLines);
-                em.persist(finalOrder);
+                em.persist(order);
                 em.getTransaction().commit();
-                return finalOrder;
+                return order;
             } catch (Exception e) {
                 em.getTransaction().rollback();
                 return null;
@@ -68,9 +62,7 @@ public class OrderFacade {
                 em.close();
             }
         }
-        return null;
 
-    }
 
 //    List<Person> query = em.createNamedQuery("Person.getByName").setParameter("firstName", firstName).getResultList();
 //            List<PersonDTO_OUT> result = new ArrayList();
@@ -117,13 +109,8 @@ public class OrderFacade {
         }
     }
 
-    public void addCar(Car car) {
+    public Car addCar(Car car) {
         EntityManager em = getEntityManager();
-        String carMakeName = car.getCarMake().getName();
-        Car car1 = em.find(Car.class, car.getCarMake().getName());
-        if(carMakeName == car1.getCarMake().getName()) {
-        car.setCarMake(car1.getCarMake());
-        }
         try {   
         em.getTransaction().begin();
         em.persist(car);
@@ -132,6 +119,7 @@ public class OrderFacade {
         } catch(Exception e)  {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
     public boolean cancelOrder(int orderId) {

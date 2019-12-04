@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import dto.Car_DTO;
 import dto.Car_DTO_IN;
 import dto.Order_DTO;
+import entities.Car;
 import entities.Order;
 import facades.OrderFacade;
 import java.util.ArrayList;
@@ -48,23 +49,36 @@ public class OrderResource {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public Response addOrder(String order) {
-        Order newOrder = GSON.fromJson(order, Order.class);
-        Order_DTO finalOrder = new Order_DTO(FACADE.addOrder1(newOrder));
-        return Response.ok(finalOrder).build();
+    public Response addCar(String car) {
+        Car car1 = GSON.fromJson(car, Car.class);
+        Car_DTO carFinal = new Car_DTO(FACADE.addCar(car1));
+        return Response.ok(carFinal).build();
     }
     
-    @Path("all")
+    @Path("allOrders")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getAll() {
-        List<Order> order = FACADE.getAllOrders();
-        List<Order_DTO> odto = new ArrayList();
+    public String getAllOrders() {
+        List<Order> orders = FACADE.getAllOrders();
+        List<Order_DTO> odtos = new ArrayList();
         
-        for(Order o : order) {
-        odto.add(new Order_DTO(o));
-        }
-        return GSON.toJson(odto);
+        orders.forEach((o) -> {
+            odtos.add(new Order_DTO(o));
+        });
+        return GSON.toJson(odtos);
+    }
+    
+    @Path("allCars")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAllCars() {
+        List<Car> cars = FACADE.getAllCars();
+        List<Car_DTO> cDtos = new ArrayList();
+        
+        cars.forEach((c) -> {
+            cDtos.add(new Car_DTO(c));
+        });
+        return GSON.toJson(cDtos);
     }
     
     /**

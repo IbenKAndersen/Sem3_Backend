@@ -18,18 +18,17 @@ public class Car_DTO {
     private Orderline_DTO orderline;
     private CarMake_DTO make;
     private CarModel_DTO model;
+    private Location_DTO location;
 
     public Car_DTO() {
     }
 
     public Car_DTO(Car car) {
-        this.id = car.getCarId();
         this.carDetails = car.getCarDetails();
-        this.orderline = new Orderline_DTO(car.getOrderline());
         this.make = new CarMake_DTO(car.getCarMake());
         this.model = new CarModel_DTO(car.getCarModel());
+//        this.location = new Location_DTO(car.getLocation());
     }
-
     
     public int getId() {
         return id;
@@ -69,6 +68,14 @@ public class Car_DTO {
 
     public void setModel(CarModel_DTO model) {
         this.model = model;
+    }
+
+    public Location_DTO getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location_DTO location) {
+        this.location = location;
     }
 
     @Override

@@ -15,7 +15,7 @@ import java.util.List;
 public class CarModel_DTO {
 
     private List<Car_DTO> cars;
-    private CarMake_DTO make;
+//    private CarMake_DTO make;
     private String name;
 
     public CarModel_DTO() {
@@ -27,7 +27,7 @@ public class CarModel_DTO {
                 this.cars.add(new Car_DTO(carsOfModel));
             });
         }
-        this.make = new CarMake_DTO(model.getMake());
+//        this.make = new CarMake_DTO(model.getMake());
         this.name = model.getName();
     }
 
@@ -39,14 +39,14 @@ public class CarModel_DTO {
     public void setCars(List<Car_DTO> cars) {
         this.cars = cars;
     }
-
-    public CarMake_DTO getMake() {
-        return make;
-    }
-
-    public void setMake(CarMake_DTO make) {
-        this.make = make;
-    }
+//
+//    public CarMake_DTO getMake() {
+//        return make;
+//    }
+//
+//    public void setMake(CarMake_DTO make) {
+//        this.make = make;
+//    }
 
     public String getName() {
         return name;

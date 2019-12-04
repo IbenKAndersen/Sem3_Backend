@@ -20,6 +20,7 @@ public class Car_DTO_IN {
     private Orderline_DTO_IN orderline;
     private CarMake_DTO_IN make;
     private CarModel_DTO_IN model;
+//    private Location_DTO_IN location;
 
     public Car_DTO_IN() {
     }
@@ -27,9 +28,9 @@ public class Car_DTO_IN {
     public Car_DTO_IN(Car car) {
         this.id = car.getCarId();
         this.carDetails = car.getCarDetails();
-        this.orderline = new Orderline_DTO_IN(car.getOrderline());
         this.make = new CarMake_DTO_IN(car.getCarMake());
         this.model = new CarModel_DTO_IN(car.getCarModel());
+//        this.location = new Location_DTO_IN(car.getLocation());
     }
 
     public int getId() {
@@ -72,8 +73,15 @@ public class Car_DTO_IN {
         this.model = model;
     }
 
-    
+//    public Location_DTO_IN getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(Location_DTO_IN location) {
+//        this.location = location;
+//    }
 
+    
     @Override
     public String toString() {
         return "Car_DTO{" + "id=" + id + ", carDetails=" + carDetails + ", orderline=" + orderline + ", make=" + make + ", model=" + model + '}';
