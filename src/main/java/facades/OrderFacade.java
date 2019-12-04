@@ -43,27 +43,6 @@ public class OrderFacade {
     public OrderFacade() {
     }
 
-    public Order addOrder1(Order order) {
-        EntityManager em = getEntityManager();
-        List<OrderLine> orderLines = order.getOl();
-        for (OrderLine orderLine : orderLines) {
-            
-        }
-            try {
-                em.getTransaction().begin();
-                em.persist(orderLines);
-                em.persist(order);
-                em.getTransaction().commit();
-                return order;
-            } catch (Exception e) {
-                em.getTransaction().rollback();
-                return null;
-            } finally {
-                em.close();
-            }
-        }
-
-
 //    List<Person> query = em.createNamedQuery("Person.getByName").setParameter("firstName", firstName).getResultList();
 //            List<PersonDTO_OUT> result = new ArrayList();
 //            for (Person person : query) {
@@ -111,12 +90,12 @@ public class OrderFacade {
 
     public Car addCar(Car car) {
         EntityManager em = getEntityManager();
-        try {   
-        em.getTransaction().begin();
-        em.persist(car);
-        em.getTransaction().commit();
-        em.close();
-        } catch(Exception e)  {
+        try {
+            em.getTransaction().begin();
+            em.persist(car);
+            em.getTransaction().commit();
+            em.close();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -151,6 +130,39 @@ public class OrderFacade {
         try {
             TypedQuery<Car> query = em.createQuery("SELECT c FROM Car c", Car.class);
             System.out.println("Fetching list of cars from database...");
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Location> getAllLocations() {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery<Location> query = em.createQuery("SELECT l FROM Location l", Location.class);
+            System.out.println("Fetching list of locations from database...");
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Equipment> getAllEquipment() {
+        EntityManager em = getEntityManager();
+        try {
+            TypedQuery<Equipment> query = em.createQuery("SELECT e FROM Equipment e", Equipment.class);
+            System.out.println("Fetching list of Equipment from database...");
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Insurance> getInsurance() {
+               EntityManager em = getEntityManager();
+        try {
+            TypedQuery<Insurance> query = em.createQuery("SELECT i FROM Insurance i", Insurance.class);
+            System.out.println("Fetching list of insurances from database...");
             return query.getResultList();
         } finally {
             em.close();

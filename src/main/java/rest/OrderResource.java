@@ -3,9 +3,14 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.Car_DTO;
-import dto.Car_DTO_IN;
+import dto.Equipment_DTO;
+import dto.Insurance_DTO;
+import dto.Location_DTO;
 import dto.Order_DTO;
 import entities.Car;
+import entities.Equipment;
+import entities.Insurance;
+import entities.Location;
 import entities.Order;
 import facades.OrderFacade;
 import java.util.ArrayList;
@@ -30,7 +35,7 @@ import utils.EMF_Creator;
  *
  * @author ndupo
  */
-@Path("order")
+@Path("all")
 public class OrderResource {
     
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
@@ -55,20 +60,7 @@ public class OrderResource {
         return Response.ok(carFinal).build();
     }
     
-    @Path("allOrders")
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public String getAllOrders() {
-        List<Order> orders = FACADE.getAllOrders();
-        List<Order_DTO> odtos = new ArrayList();
-        
-        orders.forEach((o) -> {
-            odtos.add(new Order_DTO(o));
-        });
-        return GSON.toJson(odtos);
-    }
-    
-    @Path("allCars")
+    @Path("cars")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllCars() {
@@ -79,6 +71,45 @@ public class OrderResource {
             cDtos.add(new Car_DTO(c));
         });
         return GSON.toJson(cDtos);
+    }
+    
+    @Path("locations")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAllLocations() {
+        List<Location> locations = FACADE.getAllLocations();
+        List<Location_DTO> lsDto = new ArrayList();
+        
+        locations.forEach((l) -> {
+            lsDto.add(new Location_DTO(l));
+        });
+        return GSON.toJson(lsDto);
+    }
+    
+        @Path("equipment")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAllEquipment() {
+        List<Equipment> equipment = FACADE.getAllEquipment();
+        List<Equipment_DTO> esDto = new ArrayList();
+        
+        equipment.forEach((e) -> {
+            esDto.add(new Equipment_DTO(e));
+        });
+        return GSON.toJson(esDto);
+    }
+    
+            @Path("insurance")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getInsurance() {
+        List<Insurance> insurance = FACADE.getInsurance();
+        List<Insurance_DTO> iDto = new ArrayList();
+        
+        insurance.forEach((i) -> {
+            iDto.add(new Insurance_DTO(i));
+        });
+        return GSON.toJson(iDto);
     }
     
     /**

@@ -11,7 +11,7 @@ import entities.Equipment;
  *
  * @author ndupo
  */
-class Equipment_DTO {
+public class Equipment_DTO {
     
     private int id;
     private String name;
