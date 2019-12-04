@@ -62,6 +62,12 @@ public class SetupTestUsers {
         carMake2.setName("Ford");
         CarMake carMake3 = new CarMake();
         carMake3.setName("Honda");
+        CarMake carMake4 = new CarMake();
+        carMake4.setName("Mitsubishi");
+        CarMake carMake5 = new CarMake();
+        carMake5.setName("Dodge");
+        CarMake carMake6 = new CarMake();
+        carMake6.setName("Aston Martin");
 
         //Create Car Model Entities
         CarModel carModel1 = new CarModel();
@@ -73,105 +79,151 @@ public class SetupTestUsers {
         CarModel carModel3 = new CarModel();
 //        carModel3.setMake(carMake3);
         carModel3.setName("Civic");
+        CarModel carModel4 = new CarModel();
+//        carModel1.setMake(carMake1);
+        carModel4.setName("Gallant");
+        CarModel carModel5 = new CarModel();
+//        carModel1.setMake(carMake1);
+        carModel5.setName("Charger");
+        CarModel carModel6 = new CarModel();
+//        carModel1.setMake(carMake1);
+        carModel6.setName("Wrom wrom");
 
         //Create Cars Entities
         Car car1 = new Car();
         car1.setCarMake(carMake1);
         car1.setCarModel(carModel1);
-        car1.setCarDetails("Some details...");
+        car1.setCarDetails("Not family friendly");
 
         Car car2 = new Car();
         car2.setCarMake(carMake2);
         car2.setCarModel(carModel2);
-        car2.setCarDetails("Some details...");
+        car2.setCarDetails("Family friendly");
 
         Car car3 = new Car();
         car3.setCarMake(carMake3);
         car3.setCarModel(carModel3);
-        car3.setCarDetails("Some details...");
+        car3.setCarDetails("Family friendly");
+
+        Car car4 = new Car();
+        car4.setCarMake(carMake4);
+        car4.setCarModel(carModel4);
+        car4.setCarDetails("Family friendly");
         
+        Car car5 = new Car();
+        car5.setCarMake(carMake5);
+        car5.setCarModel(carModel5);
+        car5.setCarDetails("Not family friendly");
+        
+        Car car6 = new Car();
+        car6.setCarMake(carMake6);
+        car6.setCarModel(carModel6);
+        car6.setCarDetails("Not family friendly");
+
         //Create Location Entities
         Location location1 = new Location();
-        location1.setAddress("Some Address");
-        location1.setCoord("Some Coordinates");
-        
+        location1.setAddress("Københavns Lufthavn");
+        location1.setCoord("55.629953, 12.637484");
+
         Location location2 = new Location();
-        location2.setAddress("Some Address");
-        location2.setCoord("Some Coordinates");
-        
+        location2.setAddress("Copenhagen Central Station");
+        location2.setCoord("55.672388, 12.563445");
+
         Location location3 = new Location();
-        location3.setAddress("Some Address");
-        location3.setCoord("Some Coordinates");
+        location3.setAddress("Malmoe centrum");
+        location3.setCoord("55.608510, 12.999255");
+        
+        Location location4 = new Location();
+        location4.setAddress("Lyngby");
+        location4.setCoord("55.768400, 12.504070");
+        
+        Location location5 = new Location();
+        location5.setAddress("Vanløse Storcenter");
+        location5.setCoord("55.691541, 12.480927");
+        
+        Location location6 = new Location();
+        location6.setAddress("Frederiksberg have");
+        location6.setCoord("55.675132, 12.519569");
 
         // Set Cars on Location
         car1.setLocation(location1);
         car2.setLocation(location2);
         car3.setLocation(location3);
+        car4.setLocation(location4);
+        car5.setLocation(location5);
+        car6.setLocation(location6);
+        
 
         //Create Insurance Entity
         Insurance insurance1 = new Insurance();
         insurance1.setInsurance(true);
         insurance1.setPrice(500);
-        
+
         Insurance insurance2 = new Insurance();
         insurance2.setInsurance(false);
-        insurance2.setPrice(500);
+        insurance2.setPrice(0);
 
         // Create Equipment Entity
         Equipment eq1 = new Equipment();
         eq1.setName("GPS");
         eq1.setPrice(100);
         
+        Equipment eq2 = new Equipment();
+        eq2.setName("Child Seat");
+        eq2.setPrice(50);
         
-        //List of Equipment
-        List<Equipment> eqPack = new  ArrayList();
-        eqPack.add(eq1);
-        
-        //Create OrderLines Entities
-        OrderLine orderline1 = new OrderLine();
-        orderline1.setCar(car1);
-        orderline1.setLocation(location1);
-        orderline1.setInsurance(insurance1);
-        orderline1.setEquipmentList(eqPack);
-        orderline1.setRentalPeriodStart("2019-11-21T23:00:00.000Z");
-        orderline1.setRentalPeriodEnd("2019-11-30T22:59:59.999Z");
-        eq1.setOrderline(orderline1);
+        Equipment eq3 = new Equipment();
+        eq3.setName("Apple CarPlay");
+        eq3.setPrice(200);
 
-        OrderLine orderline2 = new OrderLine();
-        orderline2.setCar(car2);
-        orderline2.setLocation(location2);
-        orderline2.setInsurance(insurance2);
-        orderline2.setEquipmentList(eqPack);
-        orderline2.setRentalPeriodStart("2019-11-19T23:00:00.000Z");
-        orderline2.setRentalPeriodEnd("2019-11-21T22:59:59.999Z");
-        eq1.setOrderline(orderline2);
-
-        OrderLine orderline3 = new OrderLine();
-        orderline3.setCar(car3);
-        orderline3.setLocation(location3);
-        orderline3.setInsurance(insurance1);
-        orderline3.setEquipmentList(eqPack);
-        orderline3.setRentalPeriodStart("2019-11-01T23:00:00.000Z");
-        orderline3.setRentalPeriodEnd("2019-11-04T22:59:59.999Z");
-        eq1.setOrderline(orderline3);
-
-        List<OrderLine> orderlines = new ArrayList();
-        orderlines.add(orderline1);
-        orderlines.add(orderline2);
-        orderlines.add(orderline3);
+        Equipment eq4 = new Equipment();
+        eq4.setName("Entertainment System");
+        eq4.setPrice(200);
         
-        // Create Current date
-        Date d = new Date();
+        Equipment eq5 = new Equipment();
+        eq5.setName("Cooler");
+        eq5.setPrice(50);
         
-        //Create Booking Entity
-        Order order1 = new Order();
-        orderline1.setOrder(order1);
-        orderline2.setOrder(order1);
-        orderline3.setOrder(order1);
-        order1.setOl(orderlines);
-        order1.setUser(user);
-        order1.setD(d);
-        em.persist(order1);
+        Equipment eq6 = new Equipment();
+        eq6.setName("WiFi");
+        eq6.setPrice(100);
+        
+        Equipment eq7 = new Equipment();
+        eq7.setName("Extra Driver");
+        eq7.setPrice(500);
+        
+        Equipment eq8 = new Equipment();
+        eq8.setName("BroBizz");
+        eq8.setPrice(50);
+        
+        Equipment eq9 = new Equipment();
+        eq9.setName("Triple A");
+        eq9.setPrice(50);
+
+        em.persist(car1);
+        em.persist(car2);
+        em.persist(car3);
+        em.persist(car5);
+        em.persist(car6);
+        em.persist(eq1);
+        em.persist(eq2);
+        em.persist(eq3);
+        em.persist(eq4);
+        em.persist(eq5);
+        em.persist(eq6);
+        em.persist(eq7);
+        em.persist(eq8);
+        em.persist(eq9);
+        em.persist(location1);
+        em.persist(location2);
+        em.persist(location3);
+        em.persist(location4);
+        em.persist(location5);
+        em.persist(location6);
+        em.persist(insurance1);
+        em.persist(insurance2);
+        
+        
         em.getTransaction().commit();
         em.close();
         emf.close();
