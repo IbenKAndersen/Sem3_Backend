@@ -89,32 +89,19 @@ public class SetupTestUsers {
         car3.setCarMake(carMake3);
         car3.setCarModel(carModel3);
         car3.setCarDetails("Some details...");
-
-        //Create Cars on Location 
-        List<Car> carsOnLocation1 = new ArrayList();
-        carsOnLocation1.add(car1);
-        
-        List<Car> carsOnLocation2 = new ArrayList();
-        carsOnLocation2.add(car2);
-        
-        List<Car> carsOnLocation3 = new ArrayList();
-        carsOnLocation3.add(car3);
         
         //Create Location Entities
         Location location1 = new Location();
         location1.setAddress("Some Address");
         location1.setCoord("Some Coordinates");
-        location1.setCars_on_location(carsOnLocation1);
         
         Location location2 = new Location();
         location2.setAddress("Some Address");
         location2.setCoord("Some Coordinates");
-        location2.setCars_on_location(carsOnLocation2);
         
         Location location3 = new Location();
         location3.setAddress("Some Address");
         location3.setCoord("Some Coordinates");
-        location2.setCars_on_location(carsOnLocation3);
 
         // Set Cars on Location
         car1.setLocation(location1);

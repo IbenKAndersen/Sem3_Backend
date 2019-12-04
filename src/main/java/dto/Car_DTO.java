@@ -24,10 +24,11 @@ public class Car_DTO {
     }
 
     public Car_DTO(Car car) {
+        this.id = car.getCarId();
         this.carDetails = car.getCarDetails();
         this.make = new CarMake_DTO(car.getCarMake());
         this.model = new CarModel_DTO(car.getCarModel());
-//        this.location = new Location_DTO(car.getLocation());
+        this.location = new Location_DTO(car.getLocation());
     }
     
     public int getId() {

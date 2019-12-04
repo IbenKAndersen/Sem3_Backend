@@ -39,12 +39,6 @@ public class Location implements Serializable {
     @PrimaryKeyJoinColumn(name = "location_id")
     private OrderLine orderline;
     
-        @OneToMany(
-        mappedBy = "location",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-    )
-    private List<Car> cars_on_location = new ArrayList();
 
     public Location() {
     }
@@ -53,6 +47,8 @@ public class Location implements Serializable {
         this.address = address;
         this.coord = coord;
     }
+    
+    
 
     public String getAddress() {
         return address;
@@ -68,14 +64,6 @@ public class Location implements Serializable {
 
     public void setCoord(String coord) {
         this.coord = coord;
-    }
-
-    public List<Car> getCars_on_location() {
-        return cars_on_location;
-    }
-
-    public void setCars_on_location(List<Car> cars_on_location) {
-        this.cars_on_location = cars_on_location;
     }
 
     public int getId() {

@@ -18,17 +18,11 @@ public class Location_DTO_IN {
 
     private int id;
     private String address, coord;
-    private List<Car_DTO_IN> cars_on_location = new ArrayList();
 
     public Location_DTO_IN(Location location) {
         this.id = location.getId();
         this.address = location.getAddress();
         this.coord = location.getCoord();
-        if (location.getCars_on_location() != null) {
-            for (Car car : location.getCars_on_location()) {
-                this.cars_on_location.add(new Car_DTO_IN(car));
-            }
-        }
     }
 
     public int getId() {
@@ -55,13 +49,6 @@ public class Location_DTO_IN {
         this.coord = coord;
     }
 
-    public List<Car_DTO_IN> getCars_on_location() {
-        return cars_on_location;
-    }
-
-    public void setCars_on_location(List<Car_DTO_IN> cars_on_location) {
-        this.cars_on_location = cars_on_location;
-    }
     
     
 

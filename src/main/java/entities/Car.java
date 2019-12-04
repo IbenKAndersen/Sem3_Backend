@@ -50,25 +50,26 @@ public class Car implements Serializable {
     @Column(name = "car_details", length = 255)
     private String carDetails;
     
-    @ManyToOne
+
     @JoinColumn(name = "car_On_Location")
+    @ManyToOne
     private Location location;
 
     public Car() {
     }
 
-    public Car(CarMake carMake, CarModel carModel, String carDetails) {
-        this.carMake = carMake;
-        this.carModel = carModel;
-        this.carDetails = carDetails;
-    }
-//
-//    public Car(CarMake carMake, CarModel carModel, String carDetails, Location location) {
+//    public Car(CarMake carMake, CarModel carModel, String carDetails) {
 //        this.carMake = carMake;
 //        this.carModel = carModel;
 //        this.carDetails = carDetails;
-//        this.location = location;
 //    }
+
+    public Car(CarMake carMake, CarModel carModel, String carDetails, Location location) {
+        this.carMake = carMake;
+        this.carModel = carModel;
+        this.carDetails = carDetails;
+        this.location = location;
+    }
 
     public int getCarId() {
         return carId;
