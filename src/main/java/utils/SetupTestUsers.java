@@ -109,12 +109,12 @@ public class SetupTestUsers {
         car4.setCarMake(carMake4);
         car4.setCarModel(carModel4);
         car4.setCarDetails("Family friendly");
-        
+
         Car car5 = new Car();
         car5.setCarMake(carMake5);
         car5.setCarModel(carModel5);
         car5.setCarDetails("Not family friendly");
-        
+
         Car car6 = new Car();
         car6.setCarMake(carMake6);
         car6.setCarModel(carModel6);
@@ -132,15 +132,15 @@ public class SetupTestUsers {
         Location location3 = new Location();
         location3.setAddress("Malmoe centrum");
         location3.setCoord("55.608510, 12.999255");
-        
+
         Location location4 = new Location();
         location4.setAddress("Lyngby");
         location4.setCoord("55.768400, 12.504070");
-        
+
         Location location5 = new Location();
         location5.setAddress("Vanløse Storcenter");
         location5.setCoord("55.691541, 12.480927");
-        
+
         Location location6 = new Location();
         location6.setAddress("Frederiksberg have");
         location6.setCoord("55.675132, 12.519569");
@@ -152,7 +152,6 @@ public class SetupTestUsers {
         car4.setLocation(location4);
         car5.setLocation(location5);
         car6.setLocation(location6);
-        
 
         //Create Insurance Entity
         Insurance insurance1 = new Insurance();
@@ -167,11 +166,11 @@ public class SetupTestUsers {
         Equipment eq1 = new Equipment();
         eq1.setName("GPS");
         eq1.setPrice(100);
-        
+
         Equipment eq2 = new Equipment();
         eq2.setName("Child Seat");
         eq2.setPrice(50);
-        
+
         Equipment eq3 = new Equipment();
         eq3.setName("Apple CarPlay");
         eq3.setPrice(200);
@@ -179,23 +178,23 @@ public class SetupTestUsers {
         Equipment eq4 = new Equipment();
         eq4.setName("Entertainment System");
         eq4.setPrice(200);
-        
+
         Equipment eq5 = new Equipment();
         eq5.setName("Cooler");
         eq5.setPrice(50);
-        
+
         Equipment eq6 = new Equipment();
         eq6.setName("WiFi");
         eq6.setPrice(100);
-        
+
         Equipment eq7 = new Equipment();
         eq7.setName("Extra Driver");
         eq7.setPrice(500);
-        
+
         Equipment eq8 = new Equipment();
         eq8.setName("BroBizz");
         eq8.setPrice(50);
-        
+
         Equipment eq9 = new Equipment();
         eq9.setName("Triple A");
         eq9.setPrice(50);
@@ -222,8 +221,7 @@ public class SetupTestUsers {
         em.persist(location6);
         em.persist(insurance1);
         em.persist(insurance2);
-        
-        
+
         em.getTransaction().commit();
         em.close();
         emf.close();
