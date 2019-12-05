@@ -53,25 +53,25 @@ public class SetupTestUsers {
         //Create Car Brands Entities
         CarMake carMakePorsche = new CarMake();
         carMakePorsche.setName("Porsche");
-        
+
         CarMake carMakeFord = new CarMake();
         carMakeFord.setName("Ford");
-        
+
         CarMake carMakeHonda = new CarMake();
         carMakeHonda.setName("Honda");
-        
+
         CarMake carMakeMitsubishi = new CarMake();
         carMakeMitsubishi.setName("Mitsubishi");
-        
+
         CarMake carMakeDodge = new CarMake();
         carMakeDodge.setName("Dodge");
-        
+
         CarMake carMakeAstonMartin = new CarMake();
         carMakeAstonMartin.setName("Aston Martin");
-        
+
         CarMake carMakeTesla = new CarMake();
         carMakeTesla.setName("Tesla");
-        
+
         CarMake carMakeToyota = new CarMake();
         carMakeToyota.setName("Toyota");
 
@@ -85,7 +85,7 @@ public class SetupTestUsers {
         panamera.setName("Panamera");
         CarModel cayman = new CarModel();
         cayman.setName("Cayman");
-        
+
         // Ford Models
         CarModel focus = new CarModel();
         focus.setName("Focus");
@@ -93,7 +93,7 @@ public class SetupTestUsers {
         mondeo.setName("Mondeo");
         CarModel f50 = new CarModel();
         f50.setName("F50");
-        
+
         // Honda Models
         CarModel civic = new CarModel();
         civic.setName("Civic");
@@ -103,13 +103,13 @@ public class SetupTestUsers {
         s2000.setName("s2000");
         CarModel nsx = new CarModel();
         nsx.setName("NSX");
-        
+
         // Mitsubishi Models
         CarModel gallant = new CarModel();
         gallant.setName("Gallant");
         CarModel evolution = new CarModel();
         evolution.setName("Evolution");
-        
+
         // Dodge Models
         CarModel charger = new CarModel();
         charger.setName("Charger");
@@ -119,7 +119,7 @@ public class SetupTestUsers {
         viper.setName("Viper");
         CarModel dart = new CarModel();
         dart.setName("Dart");
-        
+
         // Aston Martin Models
         CarModel db11 = new CarModel();
         db11.setName("DB11");
@@ -127,7 +127,7 @@ public class SetupTestUsers {
         vantage.setName("Vantage");
         CarModel valkyrie = new CarModel();
         valkyrie.setName("Valkyrie");
-        
+
         // Tesla Models
         CarModel model_S = new CarModel();
         model_S.setName("Model S");
@@ -137,7 +137,7 @@ public class SetupTestUsers {
         Model_3.setName("Model 3");
         CarModel cybertruck = new CarModel();
         cybertruck.setName("Cybertruck");
-        
+
         // Toyota
         CarModel corolla = new CarModel();
         corolla.setName("Corolla");
@@ -148,7 +148,7 @@ public class SetupTestUsers {
         CarModel aygo = new CarModel();
         aygo.setName("Aygo");
         //Create Cars Entities
-        
+
         // Porsche Collection
         Car car1 = new Car();
         car1.setCarMake(carMakePorsche);
@@ -159,12 +159,12 @@ public class SetupTestUsers {
         car2.setCarMake(carMakePorsche);
         car2.setCarModel(cayman);
         car2.setCarDetails("Not family friendly");
-        
+
         Car car3 = new Car();
         car3.setCarMake(carMakePorsche);
         car3.setCarModel(panamera);
         car3.setCarDetails("Family friendly");
-        
+
         Car car4 = new Car();
         car4.setCarMake(carMakePorsche);
         car4.setCarModel(s911);
@@ -180,7 +180,7 @@ public class SetupTestUsers {
         car6.setCarMake(carMakeFord);
         car6.setCarModel(focus);
         car6.setCarDetails("Family friendly");
-        
+
         Car car7 = new Car();
         car7.setCarMake(carMakeFord);
         car7.setCarModel(f50);
@@ -191,28 +191,28 @@ public class SetupTestUsers {
         car8.setCarMake(carMakeHonda);
         car8.setCarModel(s2000);
         car8.setCarDetails("Not family friendly");
-        
+
         Car car9 = new Car();
         car9.setCarMake(carMakeHonda);
         car9.setCarModel(jazz);
         car9.setCarDetails("Family friendly");
-        
+
         Car car10 = new Car();
         car10.setCarMake(carMakeHonda);
         car10.setCarModel(civic);
         car10.setCarDetails("Family friendly");
-        
+
         Car car11 = new Car();
         car11.setCarMake(carMakeHonda);
         car11.setCarModel(nsx);
         car11.setCarDetails("Not family friendly");
-        
+
         // Dodge Collection
         Car car12 = new Car();
         car12.setCarMake(carMakeDodge);
         car12.setCarModel(dart);
         car12.setCarDetails("Family friendly");
-        
+
         Car car13 = new Car();
         car13.setCarMake(carMakeDodge);
         car13.setCarModel(challenger);
@@ -222,70 +222,69 @@ public class SetupTestUsers {
         car14.setCarMake(carMakeDodge);
         car14.setCarModel(charger);
         car14.setCarDetails("Family friendly");
-        
+
         Car car15 = new Car();
         car15.setCarMake(carMakeDodge);
         car15.setCarModel(viper);
         car15.setCarDetails("Not family friendly");
-        
+
         // Aston Martin
         Car car16 = new Car();
         car16.setCarMake(carMakeAstonMartin);
         car16.setCarModel(valkyrie);
         car16.setCarDetails("Not family friendly");
-        
+
         Car car17 = new Car();
         car17.setCarMake(carMakeAstonMartin);
         car17.setCarModel(vantage);
         car17.setCarDetails("Not family friendly");
-        
+
         Car car18 = new Car();
         car18.setCarMake(carMakeAstonMartin);
         car18.setCarModel(db11);
         car18.setCarDetails("Family friendly");
-        
+
         // Tesla Collection
         Car car19 = new Car();
         car19.setCarMake(carMakeTesla);
         car19.setCarModel(Model_3);
         car19.setCarDetails("Family friendly");
-        
+
         Car car20 = new Car();
         car20.setCarMake(carMakeTesla);
         car20.setCarModel(model_S);
         car20.setCarDetails("Family friendly");
-        
+
         Car car21 = new Car();
         car21.setCarMake(carMakeTesla);
         car21.setCarModel(model_X);
         car21.setCarDetails("Family friendly");
-        
+
         Car car22 = new Car();
         car22.setCarMake(carMakeTesla);
         car22.setCarModel(cybertruck);
         car22.setCarDetails("Family friendly");
-        
+
         // Toyota Collection
         Car car23 = new Car();
         car23.setCarMake(carMakeToyota);
         car23.setCarModel(aygo);
         car23.setCarDetails("Semi family friendly");
-        
+
         Car car24 = new Car();
         car24.setCarMake(carMakeToyota);
         car24.setCarModel(corolla);
         car24.setCarDetails("Family friendly");
-        
+
         Car car25 = new Car();
         car25.setCarMake(carMakeToyota);
         car25.setCarModel(prius);
         car25.setCarDetails("Family friendly");
-        
+
         Car car26 = new Car();
         car26.setCarMake(carMakeToyota);
         car26.setCarModel(c_hr);
         car26.setCarDetails("Family friendly");
-        
 
         //Create Location Entities
         Location location1 = new Location();
@@ -311,31 +310,31 @@ public class SetupTestUsers {
         Location location6 = new Location();
         location6.setAddress("Frederiksberg Garden");
         location6.setCoord("55.675132, 12.519569");
-        
+
         Location location7 = new Location();
         location7.setAddress("Stockholm Central Station");
         location7.setCoord("59.331215, 18.058206");
-        
+
         Location location8 = new Location();
         location8.setAddress("Helsinki Mall");
         location8.setCoord("60.170562, 24.942227");
-        
+
         Location location9 = new Location();
         location9.setAddress("London Marble Arch");
         location9.setCoord("51.513212, -0.160321");
-        
+
         Location location10 = new Location();
         location10.setAddress("London Westminster");
         location10.setCoord("51.497039, -0.138996");
-        
+
         Location location11 = new Location();
         location11.setAddress("Dublin Smithfield");
         location11.setCoord("53.346629, -6.280353");
-        
+
         Location location12 = new Location();
         location12.setAddress("Billund Airport P1");
         location12.setCoord("55.747767, 9.143861");
-        
+
         Location location13 = new Location();
         location13.setAddress("Billund Resort LEGOLAND");
         location13.setCoord("55.737208, 9.124908");
@@ -343,31 +342,31 @@ public class SetupTestUsers {
         Location location14 = new Location();
         location14.setAddress("Bornholm Aakirkeby");
         location14.setCoord("55.075613, 14.918001");
-        
+
         Location location15 = new Location();
         location15.setAddress("Odense Midtown");
         location15.setCoord("55.393893, 10.383769");
-        
+
         Location location16 = new Location();
         location16.setAddress("Flensburg Tarup");
         location16.setCoord("54.782299, 9.470083");
-         
+
         Location location17 = new Location();
         location17.setAddress("Hamborg Überseeallee");
         location17.setCoord("53.541509, 9.997682");
-        
+
         Location location18 = new Location();
         location18.setAddress("Hamborg Airport");
         location18.setCoord("53.634785, 10.006212");
-        
+
         Location location19 = new Location();
         location19.setAddress("Berlin Alexanderplatz");
         location19.setCoord("52.522959, 13.414774");
-        
+
         Location location20 = new Location();
         location20.setAddress("Oslo Central Station");
         location20.setCoord("59.910816, 10.749853");
-        
+
         // Set Cars on Location
         car1.setLocation(location1);
         car2.setLocation(location2);
@@ -406,12 +405,12 @@ public class SetupTestUsers {
         insurance2.setInsurance(false);
         insurance2.setPrice(0);
         insurance2.setName("No insurance");
-        
+
         Insurance insurancePlus = new Insurance();
         insurancePlus.setInsurance(true);
         insurancePlus.setPrice(750);
         insurancePlus.setName("Insurance+ Package");
-        
+
         Insurance insuranceMax = new Insurance();
         insuranceMax.setInsurance(true);
         insuranceMax.setPrice(1000);
@@ -517,6 +516,5 @@ public class SetupTestUsers {
         em.getTransaction().commit();
         em.close();
         emf.close();
-
     }
 }
