@@ -23,6 +23,9 @@ public class Insurance_DTO_IN {
         this.name = insurance.getName();
     }
 
+    public Insurance_DTO_IN() {
+    }
+
     public boolean isInsured() {
         return insured;
     }
@@ -50,9 +53,8 @@ public class Insurance_DTO_IN {
 
     @Override
     public String toString() {
-        return "Insurance_DTO{" + "insured=" + insured + ", price=" + price + '}';
+        return "Insurance_DTO_IN{" + "insured=" + insured + ", price=" + price + ", name=" + name + '}';
     }
-    
-    
+
     
 }
