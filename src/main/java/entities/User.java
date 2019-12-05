@@ -8,6 +8,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.mindrot.jbcrypt.BCrypt;
 
+/**
+ *
+ * @author Kodebanditterne
+ */
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -18,30 +22,25 @@ public class User implements Serializable {
     @NotNull
     @Column(name = "user_name", length = 25)
     private String userName;
+
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "user_pass")
     private String userPass;
+
     @JoinTable(name = "user_roles", joinColumns = {
         @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {
         @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
     @ManyToMany
     private List<Role> roleList = new ArrayList();
-    
-    @OneToMany(mappedBy = "user")
-    private List<Booking> bookings;
 
-    public List<String> getRolesAsStrings() {
-        if (roleList.isEmpty()) {
-            return null;
-        }
-        List<String> rolesAsStrings = new ArrayList();
-        for (Role role : roleList) {
-            rolesAsStrings.add(role.getRoleName());
-        }
-        return rolesAsStrings;
-    }
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Order> orders = new ArrayList<>();
 
     public User() {
     }
@@ -91,8 +90,23 @@ public class User implements Serializable {
         roleList.add(userRole);
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
+    public List<Order> getOrders() {
+        return orders;
     }
-    
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<String> getRolesAsStrings() {
+        if (roleList.isEmpty()) {
+            return null;
+        }
+        List<String> rolesAsStrings = new ArrayList();
+        for (Role role : roleList) {
+            rolesAsStrings.add(role.getRoleName());
+        }
+        return rolesAsStrings;
+    }
+
 }
