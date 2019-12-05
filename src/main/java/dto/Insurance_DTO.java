@@ -13,14 +13,25 @@ import entities.Insurance;
  */
 public class Insurance_DTO {
     
+    private String name;
     private boolean insured;
     private int price;
 
     public Insurance_DTO(Insurance insurance) {
         this.insured = insurance.isInsurance();
         this.price = insurance.getPrice();
+        this.name = insurance.getName();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
     public boolean isInsured() {
         return insured;
     }

@@ -15,16 +15,27 @@ public class Insurance_DTO_IN {
     
     private boolean insured;
     private int price;
-
+    private String name;
+    
     public Insurance_DTO_IN(Insurance insurance) {
         this.insured = insurance.isInsurance();
         this.price = insurance.getPrice();
+        this.name = insurance.getName();
     }
 
     public boolean isInsured() {
         return insured;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    
     public void setInsured(boolean insured) {
         this.insured = insured;
     }
