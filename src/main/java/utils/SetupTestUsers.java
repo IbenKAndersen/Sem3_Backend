@@ -6,13 +6,8 @@ import entities.CarMake;
 import entities.CarModel;
 import entities.Insurance;
 import entities.Location;
-import entities.Order;
-import entities.OrderLine;
 import entities.User;
 import entities.Role;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
